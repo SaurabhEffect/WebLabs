@@ -1,0 +1,63 @@
+body {
+  background: black;
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  font-family: "Consolas", monospace;
+
+  /* glowing dotted background - uniform */
+  background-image: radial-gradient(
+      rgba(0, 255, 255, 0.25) 2px,
+      transparent 2px
+    ),
+    radial-gradient(rgba(255, 0, 255, 0.15) 1px, transparent 1px);
+  background-size: 40px 40px, 80px 80px;
+  background-position: center;
+}
+
+.container {
+  text-align: center;
+  color: #fff;
+}
+
+.typing-box {
+  font-size: 4vw;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.cursor {
+  animation: blink 0.7s step-end infinite;
+  color: #ffffff;
+}
+
+.subtitle {
+  font-size: 5vw;
+  font-weight: bold;
+  margin-top: 20px;
+  color: #cccccc;
+  opacity: 0;
+  animation: fadeSlide 1.5s ease forwards;
+  animation-delay: 2s; /* appears after typing */
+}
+
+/* animations */
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes fadeSlide {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

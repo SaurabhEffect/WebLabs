@@ -1,75 +1,30 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <!--================== Design Provide By shayan-mahmood ==================-->
-
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="shortcut icon" href="favicon.png" />
-    <style>
-      body {
-        background: black;
-        margin-top: 200px;
-        display: flex;
-        justify-content: center;
-        align-content: center;
-      }
-
-      #typing {
-        width: 0ch;
-        color: white;
-        float: left;
-        font-family: sans-serif;
-        font-weight: bold;
-        font-size: 4.392386530014641vw;
-        overflow: hidden;
-        white-space: nowrap;
-        animation: typing 5s steps(22) 1s infinite alternate;
-      }
-
-      #typing span {
-        color: red;
-      }
-
-      #crow {
-        float: left;
-        color: white;
-        font-family: consolas;
-        font-weight: bold;
-        font-size: 4.392386530014641vw;
-        animation: crow 0.5s linear 0s infinite;
-      }
-
-      @keyframes typing {
-        from {
-          width: 0ch;
-        }
-        to {
-          width: 22.5ch;
-        }
-      }
-
-      @keyframes crow {
-        from {
-          opacity: 0;
-        }
-        to {
-          opacity: 1;
-        }
-      }
-
-      .OP {
-        color: blue !important;
-        font-size: 6.222547584187408vw;
-      }
-    </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Typing Animation</title>
   </head>
-
   <body>
-    <div id="typing">
-      I AM <span class="PO">Saurbh</span> <br />
-      <span class="OP">A PROGRAMMER</span>
+    <div class="container">
+      <div class="typing-box">
+        <span id="typing"></span><span class="cursor">|</span>
+      </div>
+      <div class="subtitle">A PROGRAMMER</div>
     </div>
-    <div id="crow">|</div>
-    <script></script>
+
+    <script>
+      const text = "I AM SAURABH";
+      let i = 0;
+      function typeWriter() {
+        if (i < text.length) {
+          document.getElementById("typing").innerHTML += text.charAt(i);
+          i++;
+          setTimeout(typeWriter, 150); // speed of typing
+        }
+      }
+      window.onload = typeWriter;
+    </script>
   </body>
 </html>

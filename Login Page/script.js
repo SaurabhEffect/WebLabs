@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // --- 1. Element Selection ---
+  // --- Element Selection ---
   const signUpButton = document.getElementById("signUp");
   const signInButton = document.getElementById("signIn");
   const container = document.getElementById("container");
@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const signUpForm = document.getElementById("signUpForm");
   const signInForm = document.getElementById("signInForm");
 
-  // --- 2. Panel Animation ---
+  // ---  Panel Animation ---
   signUpButton.addEventListener("click", () =>
     container.classList.add("right-panel-active")
   );
@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
     container.classList.remove("right-panel-active")
   );
 
-  // --- 3. Show/Hide Password ---
+  // --- Show/Hide Password ---
   passwordToggles.forEach((toggle) => {
     toggle.addEventListener("click", () => {
       const passwordInput = toggle.previousElementSibling;
@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // --- 4. Form Validation ---
+  // --- Form Validation ---
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
   const validateInput = (input, validationFn) => {
@@ -83,7 +83,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (isNameValid && isEmailValid && isPasswordValid) {
       alert("Sign Up Successful!");
-      // Here you would typically send data to a server
+      // send data to a server
     }
   });
 
@@ -94,7 +94,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (isEmailValid && isPasswordValid) {
       alert("Sign In Successful!");
-      // Here you would typically send data to a server
+      // send data to a server
     }
   });
 });

@@ -2,58 +2,113 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Double Slider Sign in/Sign up Form JV Codes</title>
-
-    <!-- Link to the CSS file -->
-    <link rel="stylesheet" href="styles.css" />
-    <!-- Link to Font Awesome for social icons -->
+    <title>Modern Sign in/Sign up Form</title>
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <div class="container" id="container">
-      <!-- Sign-up form container -->
-      <div class="form-container sign-up-container">
-        <form action="#">
+    <main class="container" id="container">
+      <section class="form-container sign-up-container">
+        <form id="signUpForm" novalidate>
           <h1>Create Account</h1>
-          <!-- Social media icons for Sign-up -->
           <div class="social-container">
-            <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-            <a href="#" class="social"><i class="fab fa-google"></i></a>
-            <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
-            <a href="#" class="social"><i class="fab fa-github"></i></a>
+            <a href="#" class="social" aria-label="Sign up with Facebook"
+              ><i class="fab fa-facebook-f"></i
+            ></a>
+            <a href="#" class="social" aria-label="Sign up with Google"
+              ><i class="fab fa-google"></i
+            ></a>
+            <a href="#" class="social" aria-label="Sign up with LinkedIn"
+              ><i class="fab fa-linkedin-in"></i
+            ></a>
+            <a href="#" class="social" aria-label="Sign up with GitHub"
+              ><i class="fab fa-github"></i
+            ></a>
           </div>
           <span>or use your email for registration</span>
-          <input type="text" placeholder="Name" />
-          <input type="email" placeholder="Email" />
-          <input type="password" placeholder "Password"/>
-          <button>Sign Up</button>
-        </form>
-      </div>
 
-      <!-- Sign-in form container -->
-      <div class="form-container sign-in-container">
-        <form action="#">
+          <div class="input-group">
+            <label for="signUpName" class="sr-only">Name</label>
+            <input type="text" id="signUpName" placeholder="Name" required />
+            <div class="error-message">Name is required.</div>
+          </div>
+
+          <div class="input-group">
+            <label for="signUpEmail" class="sr-only">Email</label>
+            <input type="email" id="signUpEmail" placeholder="Email" required />
+            <div class="error-message">Please enter a valid email.</div>
+          </div>
+
+          <div class="input-group">
+            <label for="signUpPassword" class="sr-only">Password</label>
+            <input
+              type="password"
+              id="signUpPassword"
+              placeholder="Password"
+              required
+            />
+            <i class="fas fa-eye password-toggle"></i>
+            <div class="error-message">
+              Password must be at least 8 characters.
+            </div>
+          </div>
+
+          <button type="submit">Sign Up</button>
+        </form>
+      </section>
+
+      <section class="form-container sign-in-container">
+        <form id="signInForm" novalidate>
           <h1>Sign in</h1>
-          <!-- Social media icons for Sign-in -->
           <div class="social-container">
-            <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-            <a href="#" class="social"><i class="fab fa-google"></i></a>
-            <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
-            <a href="#" class="social"><i class="fab fa-github"></i></a>
+            <a href="#" class="social" aria-label="Sign in with Facebook"
+              ><i class="fab fa-facebook-f"></i
+            ></a>
+            <a href="#" class="social" aria-label="Sign in with Google"
+              ><i class="fab fa-google"></i
+            ></a>
+            <a href="#" class="social" aria-label="Sign in with LinkedIn"
+              ><i class="fab fa-linkedin-in"></i
+            ></a>
+            <a href="#" class="social" aria-label="Sign up with GitHub"
+              ><i class="fab fa-github"></i
+            ></a>
           </div>
           <span>or use your account</span>
-          <input type "email" placeholder="Email" />
-          <input type="password" placeholder="Password" />
+
+          <div class="input-group">
+            <label for="signInEmail" class="sr-only">Email</label>
+            <input type="email" id="signInEmail" placeholder="Email" required />
+            <div class="error-message">Please enter a valid email.</div>
+          </div>
+
+          <div class="input-group">
+            <label for="signInPassword" class="sr-only">Password</label>
+            <input
+              type="password"
+              id="signInPassword"
+              placeholder="Password"
+              required
+            />
+            <i class="fas fa-eye password-toggle"></i>
+            <div class="error-message">Password is required.</div>
+          </div>
+
           <a href="#">Forgot your password?</a>
-          <button>Sign In</button>
+          <button type="submit">Sign In</button>
         </form>
-      </div>
-      <!-- Overlay container for soggle effect -->
+      </section>
+
       <div class="overlay-container">
         <div class="overlay">
           <div class="overlay-panel overlay-left">
@@ -65,13 +120,12 @@
           </div>
           <div class="overlay-panel overlay-right">
             <h1>Hello, Friend!</h1>
-            <p>Enter your personal details and start journey with us</p>
+            <p>Enter your personal details and start your journey with us</p>
             <button class="ghost" id="signUp">Sign Up</button>
           </div>
         </div>
       </div>
-    </div>
-    <!-- Link to JavaScript file -->
+    </main>
     <script src="script.js"></script>
   </body>
 </html>

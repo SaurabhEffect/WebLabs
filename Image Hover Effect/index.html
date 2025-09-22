@@ -1,16 +1,188 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Image Hover Effect</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <section class="container">
-        <div class="clip clip1"></div>
-        <div class="clip clip2"></div>
-        <div class="clip clip3"></div>
-    </section>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Interactive Image Hover Gallery</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body class="bg-gray-900 text-white antialiased">
+    <div class="container mx-auto px-4 py-8 sm:py-12">
+      <!-- Header -->
+      <header class="text-center mb-8 sm:mb-12">
+        <h1
+          class="text-4xl sm:text-5xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-indigo-600"
+        >
+          Image Hover Effect Gallery
+        </h1>
+        <p class="mt-3 text-lg text-gray-400 max-w-2xl mx-auto">
+          Button par click karein aur alag-alag hover effects dekhein.
+        </p>
+      </header>
+
+      <!-- Controls/Buttons to switch effects -->
+      <div
+        class="controls flex flex-wrap justify-center gap-3 sm:gap-4 mb-8 sm:mb-12"
+      >
+        <button
+          data-effect="zoom"
+          class="px-5 py-2.5 font-medium bg-gray-800 hover:bg-gray-700 text-gray-300 rounded-lg text-sm transition-all duration-300 shadow-md"
+        >
+          Zoom In
+        </button>
+        <button
+          data-effect="slide"
+          class="px-5 py-2.5 font-medium bg-gray-800 hover:bg-gray-700 text-gray-300 rounded-lg text-sm transition-all duration-300 shadow-md"
+        >
+          Slide Up
+        </button>
+        <button
+          data-effect="grayscale"
+          class="px-5 py-2.5 font-medium bg-gray-800 hover:bg-gray-700 text-gray-300 rounded-lg text-sm transition-all duration-300 shadow-md"
+        >
+          Grayscale
+        </button>
+        <button
+          data-effect="blur"
+          class="px-5 py-2.5 font-medium bg-gray-800 hover:bg-gray-700 text-gray-300 rounded-lg text-sm transition-all duration-300 shadow-md"
+        >
+          Blur
+        </button>
+        <button
+          data-effect="rotate"
+          class="px-5 py-2.5 font-medium bg-gray-800 hover:bg-gray-700 text-gray-300 rounded-lg text-sm transition-all duration-300 shadow-md"
+        >
+          3D Rotate
+        </button>
+        <button
+          data-effect="shine"
+          class="px-5 py-2.5 font-medium bg-gray-800 hover:bg-gray-700 text-gray-300 rounded-lg text-sm transition-all duration-300 shadow-md"
+        >
+          Shine
+        </button>
+        <button
+          data-effect="border"
+          class="px-5 py-2.5 font-medium bg-gray-800 hover:bg-gray-700 text-gray-300 rounded-lg text-sm transition-all duration-300 shadow-md"
+        >
+          Corner Border
+        </button>
+        <button
+          data-effect="circle"
+          class="px-5 py-2.5 font-medium bg-gray-800 hover:bg-gray-700 text-gray-300 rounded-lg text-sm transition-all duration-300 shadow-md"
+        >
+          Circle Reveal
+        </button>
+        <button
+          data-effect="polygon"
+          class="px-5 py-2.5 font-medium bg-gray-800 hover:bg-gray-700 text-gray-300 rounded-lg text-sm transition-all duration-300 shadow-md"
+        >
+          Polygon Slice
+        </button>
+      </div>
+
+      <!-- Main Image Gallery -->
+      <div
+        id="gallery-container-main"
+        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
+      >
+        <!-- Image 1 -->
+        <div class="image-box">
+          <img
+            src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+            alt="Mountain landscape"
+          />
+          <div class="overlay">
+            <h3 class="font-bold text-xl mb-1">Pahadon ki Choti</h3>
+            <p class="text-sm text-gray-300">Sunrise view</p>
+          </div>
+        </div>
+        <!-- Image 2 -->
+        <div class="image-box">
+          <img
+            src="https://images.unsplash.com/photo-1542202293-95393da22105?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+            alt="Forest path"
+          />
+          <div class="overlay">
+            <h3 class="font-bold text-xl mb-1">Jungle ka Raasta</h3>
+            <p class="text-sm text-gray-300">Calm and peaceful</p>
+          </div>
+        </div>
+        <!-- Image 3 -->
+        <div class="image-box">
+          <img
+            src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+            alt="Lake house"
+          />
+          <div class="overlay">
+            <h3 class="font-bold text-xl mb-1">Jheel kinare Ghar</h3>
+            <p class="text-sm text-gray-300">Dream vacation spot</p>
+          </div>
+        </div>
+        <!-- Image 4 -->
+        <div class="image-box">
+          <img
+            src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+            alt="Italian coast"
+          />
+          <div class="overlay">
+            <h3 class="font-bold text-xl mb-1">Samundar ka Kinara</h3>
+            <p class="text-sm text-gray-300">Beauty of Italy</p>
+          </div>
+        </div>
+        <!-- Image 5 -->
+        <div class="image-box">
+          <img
+            src="https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+            alt="Misty forest"
+          />
+          <div class="overlay">
+            <h3 class="font-bold text-xl mb-1">Dhundh wala Jungle</h3>
+            <p class="text-sm text-gray-300">Mysterious nature</p>
+          </div>
+        </div>
+        <!-- Image 6 -->
+        <div class="image-box">
+          <img
+            src="https://images.unsplash.com/photo-1505144808419-1957a94ca61e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80"
+            alt="Beach sunset"
+          />
+          <div class="overlay">
+            <h3 class="font-bold text-xl mb-1">Shaam ka Nazara</h3>
+            <p class="text-sm text-gray-300">Colorful sky</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Polygon Effect Gallery -->
+      <div
+        id="gallery-container-polygon"
+        class="hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
+      >
+        <div class="polygon-box">
+          <div class="clip clip1"></div>
+          <div class="clip clip2"></div>
+          <div class="clip clip3"></div>
+        </div>
+        <div class="polygon-box">
+          <div class="clip clip1"></div>
+          <div class="clip clip2"></div>
+          <div class="clip clip3"></div>
+        </div>
+        <div class="polygon-box">
+          <div class="clip clip1"></div>
+          <div class="clip clip2"></div>
+          <div class="clip clip3"></div>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
 </html>

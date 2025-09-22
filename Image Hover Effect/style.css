@@ -1,55 +1,231 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
 body {
-    margin: 0;
-    padding: 0;
-    background: #555;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  font-family: "Inter", sans-serif;
 }
 
-.container{
-    position: relative;
-    width: 800px;
-    height: 500px;
-    background: #222;
+.controls button.active {
+  background-color: #4f46e5; /* indigo-600 */
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px 0 rgba(79, 70, 229, 0.39);
 }
 
-.clip{
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    transition: all 0.5s;
+/* --- STYLES FOR MAIN GALLERY EFFECTS --- */
 
+/* --- Base Styles for Image Box & Overlay --- */
+.image-box {
+  position: relative;
+  overflow: hidden;
+  border-radius: 0.75rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease-in-out;
 }
 
-.clip1{
-    background:url(https://images.unsplash.com/photo-1604537466158-719b1972feb8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80);
-    background-size: cover;
-    background-position: center;
-    clip-path: polygon(0 0, 46% 0, 39% 100%, 0 100%);
+.image-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: all 0.4s ease-in-out;
 }
 
-.clip2{
-    background:url(https://images.unsplash.com/photo-1502228213426-d4e9f2add0e5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80);
-    background-size: cover;
-    background-position: center;
-    clip-path: polygon(19% 0, 87% 0, 64% 100%, 33% 100%);
+.image-box .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  opacity: 0;
+  transition: all 0.4s ease-in-out;
 }
 
-.clip3{
-    background:url(https://images.unsplash.com/photo-1519757043093-285fcb07a4e4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80);
-    background-size: cover;
-    background-position: center;
-    clip-path: polygon(82% 0, 100% 0, 100% 100%, 63% 100%);
+/* --- Effect 1: Zoom In --- */
+.effect-zoom .image-box:hover img {
+  transform: scale(1.1);
+}
+.effect-zoom .image-box:hover .overlay {
+  opacity: 1;
 }
 
-.container:hover .clip{
-    clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%);
+/* --- Effect 2: Slide Up --- */
+.effect-slide .overlay {
+  transform: translateY(100%);
+}
+.effect-slide .image-box:hover .overlay {
+  transform: translateY(0);
+  opacity: 1;
 }
 
-.container .clip:hover{
-clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+/* --- Effect 3: Grayscale --- */
+.effect-grayscale img {
+  filter: grayscale(100%);
+}
+.effect-grayscale .image-box:hover img {
+  filter: grayscale(0%);
+  transform: scale(1.05);
+}
+.effect-grayscale .image-box:hover .overlay {
+  opacity: 1;
+}
+
+/* --- Effect 4: Blur --- */
+.effect-blur .overlay h3,
+.effect-blur .overlay p {
+  transform: translateY(10px);
+}
+.effect-blur .image-box:hover img {
+  filter: blur(4px) brightness(0.8);
+}
+.effect-blur .image-box:hover .overlay {
+  opacity: 1;
+}
+.effect-blur .image-box:hover .overlay h3,
+.effect-blur .image-box:hover .overlay p {
+  transform: translateY(0);
+}
+
+/* --- Effect 5: 3D Rotate --- */
+.effect-rotate .image-box {
+  perspective: 1000px;
+}
+.effect-rotate .image-box img {
+  transform: rotateY(0) rotateX(0);
+}
+.effect-rotate .image-box:hover img {
+  transform: rotateY(-20deg) rotateX(10deg) scale(1.1);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+.effect-rotate .image-box:hover .overlay {
+  opacity: 1;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+}
+.effect-rotate .overlay {
+  justify-content: flex-end;
+  padding-bottom: 1.5rem;
+}
+
+/* --- Effect 6: Shine --- */
+.effect-shine .image-box::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -150%;
+  width: 70%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.3) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: skewX(-25deg);
+  transition: left 0.6s ease-in-out;
+  z-index: 1;
+}
+.effect-shine .image-box:hover::before {
+  left: 150%;
+}
+.effect-shine .image-box:hover .overlay {
+  opacity: 1;
+}
+
+/* --- Effect 7: Corner Border --- */
+.effect-border .image-box::before,
+.effect-border .image-box::after {
+  content: "";
+  position: absolute;
+  box-sizing: border-box;
+  transition: all 0.4s ease;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-color: #4f46e5;
+}
+.effect-border .image-box::before {
+  top: 10px;
+  left: 10px;
+  border-width: 3px 0 0 3px;
+}
+.effect-border .image-box::after {
+  bottom: 10px;
+  right: 10px;
+  border-width: 0 3px 3px 0;
+}
+.effect-border .image-box:hover::before,
+.effect-border .image-box:hover::after {
+  width: calc(100% - 20px);
+  height: calc(100% - 20px);
+}
+.effect-border .image-box:hover .overlay {
+  opacity: 1;
+}
+
+/* --- Effect 8: Circle Reveal --- */
+.effect-circle .overlay {
+  clip-path: circle(0% at 50% 50%);
+}
+.effect-circle .image-box:hover .overlay {
+  opacity: 1;
+  clip-path: circle(75% at 50% 50%);
+}
+.effect-circle .image-box:hover img {
+  filter: brightness(0.6);
+}
+
+/* --- STYLES FOR POLYGON EFFECT --- */
+.polygon-box {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 350px;
+  background: #222;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.polygon-box .clip {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: all 0.5s;
+  background-size: cover;
+  background-position: center;
+}
+
+.polygon-box .clip1 {
+  background-image: url(https://images.unsplash.com/photo-1604537466158-719b1972feb8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80);
+  clip-path: polygon(0 0, 46% 0, 39% 100%, 0 100%);
+}
+
+.polygon-box .clip2 {
+  background-image: url(https://images.unsplash.com/photo-1502228213426-d4e9f2add0e5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80);
+  clip-path: polygon(19% 0, 87% 0, 64% 100%, 33% 100%);
+}
+
+.polygon-box .clip3 {
+  background-image: url(https://images.unsplash.com/photo-1519757043093-285fcb07a4e4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80);
+  clip-path: polygon(82% 0, 100% 0, 100% 100%, 63% 100%);
+}
+
+.polygon-box:hover .clip {
+  clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%);
+}
+
+.polygon-box .clip:hover {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
 }

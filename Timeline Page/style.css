@@ -1,0 +1,271 @@
+/* --- CSS VARIABLES FOR THEMES --- */
+:root {
+  --bg-color: #f4f7f6;
+  --text-color: #333;
+  --card-bg-color: white;
+  --timeline-line-color: #ddd;
+  --heading-color: #2c3e50;
+  --accent1: #ff6b6b;
+  --accent2: #4ecdc4;
+  --shadow-color: rgba(0, 0, 0, 0.05);
+  --dot-bg-color: white;
+  --dot-hover-bg: #333;
+}
+
+body.dark-mode {
+  --bg-color: #1a1a2e;
+  --text-color: #e0e0e0;
+  --card-bg-color: #16213e;
+  --timeline-line-color: #3a3a5a;
+  --heading-color: #ffffff;
+  --shadow-color: rgba(0, 0, 0, 0.2);
+  --dot-bg-color: #1a1a2e;
+  --dot-hover-bg: #e0e0e0;
+}
+
+/* CSS Reset and Basic Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  line-height: 1.6;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Main Container for the page content */
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 20px;
+  position: relative;
+}
+
+/* --- THEME TOGGLE STYLES --- */
+.theme-switch-wrapper {
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  display: flex;
+  align-items: center;
+}
+
+.theme-switch {
+  display: inline-block;
+  height: 34px;
+  position: relative;
+  width: 60px;
+}
+
+.theme-switch input {
+  display: none;
+}
+
+.slider {
+  background-color: #ccc;
+  bottom: 0;
+  cursor: pointer;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transition: 0.4s;
+  border-radius: 34px;
+}
+
+.slider:before {
+  background-color: white;
+  bottom: 4px;
+  content: "";
+  height: 26px;
+  left: 4px;
+  position: absolute;
+  transition: 0.4s;
+  width: 26px;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: #4ecdc4;
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+/* Page Heading */
+h1.page-title {
+  text-align: center;
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: var(--heading-color);
+  margin-bottom: 60px;
+  margin-top: 60px;
+  position: relative;
+}
+
+/* Underline effect for the heading */
+h1.page-title::after {
+  content: "";
+  width: 100px;
+  height: 4px;
+  background-color: var(--accent2);
+  position: absolute;
+  bottom: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 2px;
+}
+
+/* --- TIMELINE STYLES --- */
+
+.timeline {
+  position: relative;
+  margin: 50px auto;
+}
+
+.timeline::after {
+  content: "";
+  position: absolute;
+  width: 4px;
+  background-color: var(--timeline-line-color);
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  margin-left: -2px;
+  z-index: 1;
+  border-radius: 2px;
+}
+
+.timeline-item {
+  padding: 10px 40px;
+  position: relative;
+  background-color: inherit;
+  width: 50%;
+  /* Styles for scroll animation */
+  opacity: 0;
+  transform: translateY(100px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+/* Class to trigger animation */
+.timeline-item.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.timeline-item:nth-child(odd) {
+  left: 0;
+  padding-right: 25px;
+}
+
+.timeline-item:nth-child(even) {
+  left: 50%;
+  padding-left: 25px;
+}
+
+.timeline-dot {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: var(--dot-bg-color);
+  border: 4px solid var(--accent1);
+  top: 25px;
+  border-radius: 50%;
+  z-index: 2;
+  transition: background-color 0.3s ease;
+}
+
+.timeline-item:nth-child(even) .timeline-dot {
+  border-color: var(--accent2);
+}
+
+.timeline-item:nth-child(odd) .timeline-dot {
+  right: -10px;
+}
+
+.timeline-item:nth-child(even) .timeline-dot {
+  left: -10px;
+}
+
+.timeline-content {
+  padding: 25px 30px;
+  background-color: var(--card-bg-color);
+  position: relative;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px var(--shadow-color);
+  transition: transform 0.3s ease, box-shadow 0.3s ease,
+    background-color 0.3s ease;
+}
+
+.timeline-content:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px var(--shadow-color);
+}
+
+.timeline-content:hover ~ .timeline-dot {
+  background-color: var(--dot-hover-bg);
+}
+
+.timeline-date {
+  font-weight: 600;
+  color: var(--accent2);
+  font-size: 0.9rem;
+  margin-bottom: 10px;
+  display: inline-block;
+}
+
+.timeline-item:nth-child(odd) .timeline-date {
+  color: var(--accent1);
+}
+
+.timeline-content h3 {
+  margin-top: 0;
+  font-weight: 600;
+  color: var(--heading-color);
+}
+
+.timeline-content p {
+  margin: 10px 0 0;
+  font-size: 0.95rem;
+  color: var(--text-color);
+}
+
+/* --- RESPONSIVE DESIGN --- */
+@media screen and (max-width: 768px) {
+  .theme-switch-wrapper {
+    top: 15px;
+    right: 15px;
+  }
+  h1.page-title {
+    font-size: 2.2rem;
+  }
+
+  .timeline::after {
+    left: 31px;
+  }
+
+  .timeline-item {
+    width: 100%;
+    padding-left: 70px;
+    padding-right: 25px;
+  }
+
+  .timeline-item:nth-child(odd),
+  .timeline-item:nth-child(even) {
+    left: 0;
+  }
+
+  .timeline-dot,
+  .timeline-item:nth-child(odd) .timeline-dot,
+  .timeline-item:nth-child(even) .timeline-dot {
+    left: 21px;
+    right: auto;
+  }
+}

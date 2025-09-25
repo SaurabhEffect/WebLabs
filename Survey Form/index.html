@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Travel Experience Survey Form</title>
+
+    <!-- Google Fonts: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body class="flex items-center justify-center min-h-screen p-4 sm:p-6">
+    <div class="w-full max-w-2xl mx-auto">
+      <!-- Main Form Container Card -->
+      <div
+        id="survey-card"
+        class="bg-white rounded-2xl shadow-2xl p-8 sm:p-12 transition-all duration-500"
+      >
+        <!-- Form Header -->
+        <div class="text-center mb-10">
+          <h1 class="text-3xl sm:text-4xl font-bold text-gray-800">
+            Travel Experience Survey
+          </h1>
+          <p class="text-gray-500 mt-2">
+            Share your travel stories and preferences with us!
+          </p>
+        </div>
+
+        <!-- The Form -->
+        <form id="travel-survey-form" class="space-y-6">
+          <!-- Full Name Field -->
+          <div class="form-group">
+            <label
+              for="full-name"
+              class="block text-sm font-semibold text-gray-700 mb-2"
+              >Full Name</label
+            >
+            <input
+              type="text"
+              id="full-name"
+              name="fullName"
+              placeholder="e.g., Jane Doe"
+              required
+              class="form-input block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm transition duration-300 ease-in-out focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+
+          <!-- Email Address Field -->
+          <div class="form-group">
+            <label
+              for="email"
+              class="block text-sm font-semibold text-gray-700 mb-2"
+              >Email Address</label
+            >
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="you@example.com"
+              required
+              class="form-input block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm transition duration-300 ease-in-out focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+
+          <!-- Age Group Dropdown -->
+          <div class="form-group">
+            <label
+              for="age-group"
+              class="block text-sm font-semibold text-gray-700 mb-2"
+              >Age Group</label
+            >
+            <select
+              id="age-group"
+              name="ageGroup"
+              required
+              class="form-select block w-full px-4 py-3 border border-gray-300 bg-white rounded-lg shadow-sm transition duration-300 ease-in-out focus:ring-2 focus:ring-blue-500"
+            >
+              <option value="" disabled selected>Select your age group</option>
+              <option value="under-18">Under 18</option>
+              <option value="18-25">18-25</option>
+              <option value="26-35">26-35</option>
+              <option value="36-50">36-50</option>
+              <option value="over-50">Over 50</option>
+            </select>
+          </div>
+
+          <!-- Travel Frequency Radio Buttons -->
+          <div class="form-group">
+            <label class="block text-sm font-semibold text-gray-700 mb-3"
+              >How often do you travel?</label
+            >
+            <div
+              class="flex flex-col sm:flex-row sm:space-x-6 space-y-2 sm:space-y-0"
+            >
+              <label class="flex items-center space-x-3">
+                <input
+                  type="radio"
+                  name="travelFrequency"
+                  value="rarely"
+                  class="h-4 w-4 text-blue-600 border-gray-300 focus:ring-blue-500"
+                />
+                <span class="text-gray-700">Rarely</span>
+              </label>
+              <label class="flex items-center space-x-3">
+                <input
+                  type="radio"
+                  name="travelFrequency"
+                  value="often"
+                  class="h-4 w-4 text-blue-600 border-gray-300 focus:ring-blue-500"
+                />
+                <span class="text-gray-700">Often</span>
+              </label>
+              <label class="flex items-center space-x-3">
+                <input
+                  type="radio"
+                  name="travelFrequency"
+                  value="very-often"
+                  class="h-4 w-4 text-blue-600 border-gray-300 focus:ring-blue-500"
+                />
+                <span class="text-gray-700">Very Often</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Favorite Mode of Travel Checkboxes -->
+          <div class="form-group">
+            <label class="block text-sm font-semibold text-gray-700 mb-3"
+              >Favorite mode(s) of travel?</label
+            >
+            <div class="grid grid-cols-2 gap-3 sm:grid-cols-3">
+              <label class="flex items-center space-x-3">
+                <input
+                  type="checkbox"
+                  name="travelMode"
+                  value="flight"
+                  class="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                />
+                <span class="text-gray-700">Flight</span>
+              </label>
+              <label class="flex items-center space-x-3">
+                <input
+                  type="checkbox"
+                  name="travelMode"
+                  value="train"
+                  class="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                />
+                <span class="text-gray-700">Train</span>
+              </label>
+              <label class="flex items-center space-x-3">
+                <input
+                  type="checkbox"
+                  name="travelMode"
+                  value="car"
+                  class="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                />
+                <span class="text-gray-700">Car</span>
+              </label>
+              <label class="flex items-center space-x-3">
+                <input
+                  type="checkbox"
+                  name="travelMode"
+                  value="bus"
+                  class="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                />
+                <span class="text-gray-700">Bus</span>
+              </label>
+              <label class="flex items-center space-x-3">
+                <input
+                  type="checkbox"
+                  name="travelMode"
+                  value="other"
+                  class="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                />
+                <span class="text-gray-700">Other</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Feedback Textarea -->
+          <div class="form-group">
+            <label
+              for="feedback"
+              class="block text-sm font-semibold text-gray-700 mb-2"
+              >Feedback or Suggestions</label
+            >
+            <textarea
+              id="feedback"
+              name="feedback"
+              rows="5"
+              placeholder="Tell us about your best travel memory..."
+              class="form-textarea block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm transition duration-300 ease-in-out focus:ring-2 focus:ring-blue-500"
+            ></textarea>
+          </div>
+
+          <!-- Submit Button -->
+          <div>
+            <button
+              type="submit"
+              class="w-full bg-blue-600 text-white font-bold py-3 px-6 rounded-lg shadow-lg hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-500 focus:ring-opacity-50 transition-transform transform hover:scale-105"
+            >
+              Submit Survey
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Success Message (Initially Hidden) -->
+      <div
+        id="success-message"
+        class="hidden text-center bg-white rounded-2xl shadow-2xl p-12"
+      >
+        <svg
+          class="w-16 h-16 mx-auto text-green-500"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+          ></path>
+        </svg>
+        <h2 class="text-3xl font-bold text-gray-800 mt-4">Thank You!</h2>
+        <p class="text-gray-600 mt-2">
+          Your feedback has been received. Happy travels!
+        </p>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

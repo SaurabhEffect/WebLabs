@@ -1,58 +1,139 @@
+/*
+    * Using CSS variables makes themes easier to manage, scale, and read.
+    * We define a default (light) theme and then override the variables
+    * for the dark theme.
+*/
+:root {
+  --background-color: #f0f0f0;
+  --text-color: #1a1a1a;
+  --card-bg-color: #ffffff;
+  --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --button-bg-color: #3b82f6;
+  --button-text-color: #ffffff;
+  --toggle-bg-color: #343d5b;
+  --toggle-handle-color: #ffffff;
+  --sun-color: #facc15;
+  --moon-color: #f0f0f0;
+}
+
+html.dark {
+  --background-color: #1a1a1a;
+  --text-color: #f0f0f0;
+  --card-bg-color: #2c2c2c;
+  --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
+  --button-bg-color: #1d4ed8;
+  --button-text-color: #e0e0e0;
+  --toggle-bg-color: #8f9acb;
+  --toggle-handle-color: #2c2c2c;
+}
+
 body {
-  margin: 0;
+  font-family: "Inter", sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  trannsition: 0.4s;
-}
-.input {
-  visibility: hidden;
-}
-
-.label {
-  position: absolute;
-  width: 80px;
-  height: 40px;
-  background-color: lightgray;
-  border-radius: 20px;
-  cursor: pointer;
+  min-height: 100vh;
+  margin: 0;
+  padding: 2rem;
+  box-sizing: border-box;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.circle {
-  width: 34px;
+.container {
+  text-align: center;
+  max-width: 600px;
+  width: 100%;
+}
+
+.theme-switch-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.theme-switch {
+  display: inline-block;
   height: 34px;
-  background-color: white;
-  border-radius: 50%;
+  width: 60px;
+  position: relative;
+}
+
+.theme-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
   position: absolute;
-  top: 3px;
-  left: 3px;
-  animation: toggleOff 0.4s linear forwards;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--toggle-bg-color);
+  transition: 0.4s;
+  border-radius: 34px;
 }
 
-.input:checked + .label {
-  background-color: white;
+.slider:before {
+  position: absolute;
+  content: "\f185"; /* sun icon */
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+  color: var(--sun-color);
+  font-size: 24px;
+  left: 5px;
+  bottom: 5px;
+  transition: 0.4s;
 }
 
-.input:checked + .label .circle {
-  animation: toggleOn 0.4s linear forwards;
-  background-color: black;
+input:checked + .slider {
+  background-color: var(--toggle-bg-color);
 }
 
-@keyframes toggleOn {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(40px);
-  }
+input:checked + .slider:before {
+  transform: translateX(26px);
+  content: "\f186"; /* moon icon */
+  color: var(--moon-color);
 }
 
-@keyframes toggleOff {
-  0% {
-    transform: translateX(40px);
-  }
-  100% {
-    transform: translateX(0);
-  }
+.card {
+  background-color: var(--card-bg-color);
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: var(--card-shadow);
+  margin-top: 2rem;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+p {
+  font-size: 1.125rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.action-button {
+  background-color: var(--button-bg-color);
+  color: var(--button-text-color);
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.action-button:hover {
+  transform: scale(1.05);
 }

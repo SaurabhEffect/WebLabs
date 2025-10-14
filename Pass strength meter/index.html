@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <title>Password Strength Checker</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="password-strength-container" aria-labelledby="app-title">
+      <h1 id="app-title" class="visually-hidden">Password Strength Checker</h1>
+
+      <div class="password-input-group">
+        <label for="password" class="visually-hidden">Enter password</label>
+        <input
+          type="password"
+          id="password"
+          class="password-input"
+          placeholder="Enter password"
+          autocomplete="new-password"
+          aria-describedby="strength-text strength-score"
+        />
+        <button
+          type="button"
+          id="toggle-password"
+          class="icon-btn"
+          aria-label="Show password"
+          title="Show / hide password"
+        >
+          <i class="fas fa-eye" aria-hidden="true"></i>
+        </button>
+        <button
+          type="button"
+          id="copy-password"
+          class="icon-btn"
+          aria-label="Copy password"
+          title="Copy password"
+        >
+          <i class="fas fa-clipboard" aria-hidden="true"></i>
+        </button>
+        <button type="button" id="open-generate-options" class="generate-btn">
+          Generate
+        </button>
+        <button
+          type="button"
+          id="toggle-theme"
+          class="icon-btn"
+          title="Toggle dark mode"
+        >
+          <i class="fas fa-moon"></i>
+        </button>
+      </div>
+
+      <div class="strength-meter" aria-hidden="true">
+        <div class="strength-meter-fill" id="strength-fill"></div>
+      </div>
+
+      <div class="strength-info" aria-live="polite">
+        <div id="strength-text" class="strength-text">Enter a password</div>
+        <div class="strength-extra-info">
+          <span id="time-to-crack"></span>
+          <span id="strength-score" class="strength-score" aria-hidden="true"
+            >0/100</span
+          >
+        </div>
+      </div>
+
+      <div class="strength-requirements" id="requirements">
+        <div class="requirement" id="length">
+          <i class="fas fa-times-circle"></i> At least 8 characters
+        </div>
+        <div class="requirement" id="uppercase">
+          <i class="fas fa-times-circle"></i> At least 1 uppercase letter
+        </div>
+        <div class="requirement" id="lowercase">
+          <i class="fas fa-times-circle"></i> At least 1 lowercase letter
+        </div>
+        <div class="requirement" id="number">
+          <i class="fas fa-times-circle"></i> At least 1 number
+        </div>
+        <div class="requirement" id="special">
+          <i class="fas fa-times-circle"></i> At least 1 special character
+        </div>
+      </div>
+
+      <div id="suggestions" class="suggestions" aria-live="polite"></div>
+
+      <div class="breach-check">
+        <button
+          type="button"
+          id="check-breach"
+          class="breach-btn"
+          title="Check password against known breaches (privacy-safe check)"
+        >
+          Check Pwned Status
+        </button>
+        <span
+          id="breach-status"
+          class="breach-status"
+          aria-live="polite"
+        ></span>
+      </div>
+    </main>
+
+    <div
+      id="generator-modal"
+      class="modal-overlay"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modal-title"
+      hidden
+    >
+      <div class="modal-content">
+        <h2 id="modal-title">Password Generator Options</h2>
+        <button
+          id="close-modal"
+          class="modal-close-btn"
+          aria-label="Close dialog"
+        >
+          &times;
+        </button>
+        <div class="option">
+          <label for="length-slider"
+            >Length: <span id="length-value">14</span></label
+          >
+          <input type="range" id="length-slider" min="8" max="32" value="14" />
+        </div>
+        <div class="option">
+          <input type="checkbox" id="include-uppercase" checked />
+          <label for="include-uppercase">Include Uppercase (A-Z)</label>
+        </div>
+        <div class="option">
+          <input type="checkbox" id="include-numbers" checked />
+          <label for="include-numbers">Include Numbers (0-9)</label>
+        </div>
+        <div class="option">
+          <input type="checkbox" id="include-special" checked />
+          <label for="include-special">Include Symbols (!@#$)</label>
+        </div>
+        <button
+          id="generate-password-from-modal"
+          class="generate-btn modal-generate-btn"
+        >
+          Generate Password
+        </button>
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>

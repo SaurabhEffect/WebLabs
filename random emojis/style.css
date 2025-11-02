@@ -15,7 +15,25 @@ body {
   transition-duration: 200ms;
 }
 
+@keyframes wobble {
+  0% {
+    transform: rotate(0deg) scale(1.3);
+  }
+  25% {
+    transform: rotate(5deg) scale(1.3);
+  }
+  50% {
+    transform: rotate(-5deg) scale(1.3);
+  }
+  75% {
+    transform: rotate(5deg) scale(1.3);
+  }
+  100% {
+    transform: rotate(0deg) scale(1.3);
+  }
+}
+
 #emoji:hover {
-  transform: scale(1.3);
+  animation: wobble 0.3s ease-in-out;
   filter: grayscale(0);
 }

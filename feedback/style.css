@@ -1,0 +1,172 @@
+/* Import a cleaner font */
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap");
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #1a1919;
+  font-family: "Montserrat", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+  margin: 0;
+  color: #fff;
+}
+
+.panel-container {
+  background: #2c2c2c;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  border-radius: 15px;
+  font-size: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  width: 90%;
+  max-width: 600px;
+  text-align: center;
+  transform: translateY(30px);
+  opacity: 0;
+  animation: fadeIn 0.8s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.panel-container strong {
+  line-height: 1.5;
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+.ratings-container {
+  display: flex;
+  margin: 30px 0;
+  width: 100%;
+}
+
+.rating {
+  flex: 1;
+  cursor: pointer;
+  padding: 20px;
+  margin: 10px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  border: 2px solid #444;
+}
+
+.rating:hover {
+  background: #3a3a3a;
+  border-color: #555;
+  transform: translateY(-5px);
+}
+
+.rating.active {
+  background: #4a90e2;
+  border-color: #4a90e2;
+  box-shadow: 0 5px 15px rgba(74, 144, 226, 0.3);
+  transform: translateY(-5px);
+}
+
+.rating .icon {
+  width: auto;
+  font-size: 4rem;
+  margin-right: 0;
+  transition: transform 0.3s ease;
+}
+
+.rating:hover .icon,
+.rating.active .icon {
+  transform: scale(1.1);
+}
+
+.rating small {
+  color: #ddd;
+  display: block;
+  margin: 10px 0 0;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.rating.active small {
+  color: #fff;
+}
+
+.btn {
+  background: #4a90e2;
+  color: #fff;
+  border: 0;
+  border-radius: 8px;
+  padding: 14px 30px;
+  cursor: pointer;
+  outline: 0;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.btn:hover {
+  background: #357abd;
+  box-shadow: 0 5px 15px rgba(74, 144, 226, 0.3);
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+.fa-heart {
+  color: #e74c3c;
+  font-size: 4rem;
+  margin-bottom: 10px;
+  animation: pulse 0.8s infinite alternate;
+}
+
+@keyframes pulse {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.1);
+  }
+}
+
+.thank-you-content {
+  display: none;
+}
+
+.thank-you-content p {
+  font-size: 0.9rem;
+  color: #aaa;
+  margin-top: 10px;
+}
+
+#go-back {
+  background: #555;
+}
+#go-back:hover {
+  background: #666;
+  box-shadow: none;
+}
+
+.panel-container.feedback-sent .feedback-content {
+  display: none;
+}
+
+.panel-container.feedback-sent .thank-you-content {
+  display: block;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeIn 0.5s ease-out forwards;
+}

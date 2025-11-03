@@ -1,0 +1,45 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Feedback UI</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="panel-container" id="panel">
+      <div class="feedback-content">
+        <strong>How was your experience? 💬</strong>
+        <div class="ratings-container">
+          <div class="rating">
+            <div class="icon">😒</div>
+            <small>Unhappy</small>
+          </div>
+          <div class="rating">
+            <div class="icon">😐</div>
+            <small>Neutral</small>
+          </div>
+          <div class="rating active">
+            <div class="icon">😊</div>
+            <small>Satisfied</small>
+          </div>
+        </div>
+        <button class="btn" id="send">Send Feedback</button>
+      </div>
+
+      <div class="thank-you-content">
+        <i class="fas fa-heart"></i>
+        <strong>Thank You!</strong>
+        <br />
+        <strong>Feedback: <span id="feedback-result">Satisfied</span></strong>
+        <p>We'll use your feedback to improve our service.</p>
+        <button class="btn" id="go-back">Give More Feedback</button>
+      </div>
+    </div>
+    <script src="app.js"></script>
+  </body>
+</html>

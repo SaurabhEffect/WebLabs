@@ -1,4 +1,4 @@
-# 😆 Random Emoji Generator - v2.0
+# 😆 Random Emoji Generator - v3.0
 
 ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
@@ -7,96 +7,153 @@
 
 A fun, interactive web application that displays random emojis with engaging animations and sound effects.
 
-## 🆕 What's New in v2.0
+**NEW in v3.0: Emoji runs away when you get close - Chase Mode! Plus Copy and Explosion modes!**
 
-### ✨ **Two Interactive Modes** ⭐ NEW
+## 🆕 What's New in v3.0
 
-- **📋 Copy Mode** - Click emoji to copy to clipboard with notification
-- **💥 Explosion Mode** - Click emoji to create particle explosion effects
-- **Mode Toggle Button** - Switch between modes easily
-- **Persistent Mode Selection** - Saves your choice with localStorage
-- **Visual Mode Indicator** - Button shows current mode
+### 🏃 **Emoji Chase/Flee System** ⭐⭐ NEW (MAJOR)
 
-### 🎬 **Enhanced Click Interactions** ⭐ NEW
+- **Auto-Fleeing Emoji** - Emoji runs away when mouse gets within 150px
+- **Smooth Position Animation** - 300ms transition with ease-out
+- **Throttled Movement Detection** - 100ms throttle for performance
+- **Flee Cooldown** - 1 second cooldown between flees
+- **Initial Flee** - Emoji starts by fleeing on page load
+- **Distance-Based Detection** - Calculates real-time distance using math
+- **Smooth Repositioning** - Emoji animates to new position smoothly
 
-- **Copy Functionality** - Copies emoji to clipboard using Clipboard API
-- **Particle Explosion** - Creates 15 particles that fly outward on click
-- **Visual Feedback** - Opacity changes and scaling on interaction
-- **Notifications** - Shows "Copied!" or failure messages
-- **Vibration Feedback** - Haptic feedback on mobile (if supported)
+### 🎮 **Improved Positioning System** ⭐ NEW
 
-### 🎨 **Visual Enhancements** ⭐ NEW
+- **Absolute Positioning** - Emoji uses absolute positioning
+- **Center Start Position** - Starts at center of screen
+- **Viewport Boundary Detection** - Stays within screen bounds
+- **Transform & Position Transitions** - Simultaneous smooth animations
+- **No Flexbox Centering** - Uses left/top positioning with transform
 
-- **Mode Toggle Button** - Fixed position button in top-right
-- **Color-Coded Modes** - Red for Copy, different for Explosion
-- **Particle Animation** - Flying emoji particles with trajectory
-- **Fade Notifications** - Auto-hide notifications after 1.5 seconds
-- **Smooth State Transitions** - Professional opacity and scale changes
+### ⚡ **Performance Optimizations** ⭐ NEW
 
-### 🎯 **Improved User Experience** ⭐ NEW
+- **Event Throttling** - 100ms delay on mousemove detection
+- **Throttle Timeout** - Prevents rapid recalculations
+- **Flee State Flag** - Prevents overlapping flee animations
+- **Early Return Checks** - Stops unnecessary calculations
+- **Efficient Distance Math** - Uses Pythagorean theorem
 
-- **Hover-triggered Changes** - Mouseover still generates new emoji
-- **Click-triggered Modes** - Click enables Copy or Explosion mode
-- **Tooltip Information** - Mode toggle has descriptive title
-- **Error Handling** - Graceful fallback if copy fails
-- **Auto-initialization** - Loads saved mode on page load
+### 💻 **Enhanced CSS Transitions** ⭐ NEW
+
+- **Multi-Property Transitions** - Transform, filter, opacity, left, top
+- **Variable Durations** - Different speeds for different properties
+- **Ease-Out Timing** - Smooth deceleration for position changes
+- **z-index Management** - Proper layering for particles and buttons
+- **Smooth Position Updates** - Professional movement animations
+
+### 📊 **Tooltip Notifications** ⭐ ENHANCED
+
+- **SlideUp Animation** - Notifications slide up on appear
+- **SlideDown Animation** - Notifications slide down on disappear
+- **Bottom Centered Position** - Fixed position at screen bottom
+- **Professional Styling** - Dark background with white text
+- **Auto Fade** - Smooth fade-out after duration
+
+### 🎯 **Complete Feature Set** (v2 Features Retained)
+
+- **Two Interactive Modes** - Copy Mode (📋) and Explosion Mode (💥)
+- **Mode Toggle Button** - Switch between modes
+- **Copy Functionality** - Emoji copies to clipboard
+- **Particle Explosion** - 15 particles burst outward
+- **LocalStorage Persistence** - Mode saves across sessions
+- **Vibration Feedback** - Mobile haptic feedback
+- **Sound Effects** - Pop sound on emoji change
 
 ---
 
 ## 🎯 Features
 
-### Core Functionality
+### 🏃 Chase/Flee System (v3 Core Feature)
 
-- **Random Emoji Display** - Generates random emojis from a curated collection
-- **Dual Interaction Methods** - Hover or click to trigger new emojis
-- **Sound Effects** - Pop sound plays with each emoji change
-- **Smooth Animations** - Wobble effect with scale and rotation
-- **Grayscale Toggle** - Emojis transition from grayscale to full color
-- **Responsive Design** - Works perfectly on all screen sizes
+**How It Works:**
 
-### Visual Effects
+1. **Mousemove Tracking** - Continuous mouse position monitoring
+2. **Distance Calculation** - Real-time distance to emoji center
+3. **Proximity Detection** - Triggers when distance < 150px
+4. **Flee Animation** - Emoji moves to random position on screen
+5. **Cooldown Period** - 1 second before next flee allowed
+6. **Boundary Protection** - Keeps emoji within viewport
 
-- **Wobble Animation** - Playful rotating and scaling effect (0.3s)
-- **Grayscale Filter** - Default grayscale, full color on hover
-- **Smooth Transitions** - 200ms transitions for transform and filter
-- **Full-Screen Display** - Large, prominent emoji presentation (10rem font size)
+**JavaScript Implementation:**
 
-### Two-Mode System
+```javascript
+// Track mouse movement with throttle
+document.addEventListener("mousemove", (e) => {
+  if (throttleTimeout) return;
+  throttleTimeout = setTimeout(() => {
+    const emojiRect = emoji.getBoundingClientRect();
+    const emojiCenterX = emojiRect.left + emojiRect.width / 2;
+    const emojiCenterY = emojiRect.top + emojiRect.height / 2;
 
-#### Copy Mode (Default)
+    // Distance using Pythagorean theorem
+    const distance = Math.sqrt(
+      Math.pow(e.clientX - emojiCenterX, 2) +
+        Math.pow(e.clientY - emojiCenterY, 2)
+    );
+
+    if (distance < 150) {
+      moveEmoji(); // Flee!
+    }
+
+    throttleTimeout = null;
+  }, 100); // Throttle: check every 100ms
+});
+
+// Move emoji to random position
+function moveEmoji() {
+  if (isEmojiFleeing) return; // Prevent overlapping
+  isEmojiFleeing = true;
+
+  const emojiSize = emoji.getBoundingClientRect();
+  const maxX = window.innerWidth - emojiSize.width;
+  const maxY = window.innerHeight - emojiSize.height;
+  const randomX = Math.random() * maxX;
+  const randomY = Math.random() * maxY;
+
+  emoji.style.left = randomX + "px";
+  emoji.style.top = randomY + "px";
+  emoji.style.transform = "translate(0, 0)";
+
+  setTimeout(() => {
+    isEmojiFleeing = false; // Cooldown ends
+  }, 1000);
+}
+```
+
+### Copy Mode & Explosion Mode (v2 Features)
+
+**Copy Mode:**
 
 - Click emoji to copy to clipboard
 - Shows "Copied! 📋" notification
-- Emoji fades briefly on copy
 - Mobile vibration feedback
-- Notification auto-dismisses after 1.5s
 
-#### Explosion Mode
+**Explosion Mode:**
 
-- Click emoji for particle explosion
-- 15 particles burst outward in random directions
-- Emoji disappears and respawns
-- Particles fade and remove after 800ms
-- Dynamic trajectory calculations
-- Creates celebratory visual effect
+- Click emoji for particle burst
+- 8 particles with trajectory
+- Celebratory visual effect
 
-### User Experience
+### Core Interactions
 
-- **Intuitive Interaction** - Hover for change, click for action
-- **Instant Feedback** - Animation and sound confirm actions
-- **Mode Persistence** - Your choice saves across sessions
-- **Error Handling** - Gracefully handles copy failures
-- **Accessibility** - Simple, intuitive interface with tooltips
+- **Hover** - Generate new emoji with pop sound
+- **Mouse Proximity** - Emoji runs away when you get close
+- **Click** - Trigger Copy or Explosion mode
+- **Mode Toggle** - Switch between modes
 
 ---
 
 ## 📦 File Structure
 
 ```
-random-emoji-v2/
+random-emoji-v3/
 ├── index.html       # Main HTML with mode toggle button
-├── app.js           # JavaScript with Copy & Explosion modes
-├── style.css        # Styling, animations, and particle effects
+├── app.js           # JavaScript with Chase & dual modes
+├── style.css        # Styling, animations, transitions
 ├── pop.mp3          # Sound effect file
 └── README.md        # This documentation
 ```
@@ -130,10 +187,12 @@ random-emoji-v2/
    xdg-open index.html  # Linux
    ```
 
-4. **Start Interacting**
-   - **Hover** over the emoji to trigger changes
-   - **Click** the emoji for instant change
-   - Enjoy the animations and sounds!
+4. **Start Playing**
+   - Emoji automatically flees when you move mouse close
+   - **Hover** to generate new emojis
+   - **Click** mode toggle to switch modes
+   - **Click** emoji to copy or explode (depending on mode)
+   - Try chasing the emoji around the screen!
 
 ### Browser Requirements
 
@@ -164,289 +223,96 @@ The application includes **40+ expressive emojis**:
 
 ---
 
-## 🎮 Two-Mode System
+## 🏃 Chase System Explained
 
-### Mode 1: Copy Mode 📋
+### Proximity Detection
 
-**How it works:**
+The emoji continuously monitors mouse position:
 
-1. Click the mode toggle button if needed
-2. Hover to generate new emoji
-3. Click the emoji to copy to clipboard
-4. See "Copied! 📋" notification
-5. Notification auto-dismisses after 1.5 seconds
-
-**Features:**
-
-- One-click emoji copying
-- Clipboard API integration
-- Toast notification feedback
-- Mobile vibration support
-- Error handling for copy failures
-
-```javascript
-function handleCopyMode(e) {
-  setNewEmoji();
-  const currentEmoji = emoji.innerText;
-
-  navigator.clipboard
-    .writeText(currentEmoji)
-    .then(() => {
-      if (navigator.vibrate) navigator.vibrate(50);
-      emoji.style.opacity = "0.6"; // Visual feedback
-      showNotification("Copied! 📋", 1500);
-    })
-    .catch((err) => {
-      showNotification("Copy failed ❌", 1500);
-    });
-}
+```
+1. Mouse at (500, 300)
+2. Emoji at (400, 250)
+3. Calculate distance: √[(500-400)² + (300-250)²] = √[10000 + 2500] ≈ 112px
+4. Distance < 150px → FLEE!
 ```
 
-### Mode 2: Explosion Mode 💥
+### Throttling for Performance
 
-**How it works:**
-
-1. Click mode toggle to switch to Explosion Mode
-2. Hover to generate new emoji
-3. Click the emoji to trigger explosion
-4. 15 particles burst outward with random directions
-5. Emoji disappears and respawns after animation
-6. Particles fade and are removed after 800ms
-
-**Features:**
-
-- Particle burst effect
-- Random trajectory calculations
-- Physics-based particle motion
-- Smooth fade-out animation
-- Professional celebratory effect
+Mousemove events fire ~60 times per second. Throttling reduces calculations:
 
 ```javascript
-function handleExplosionMode(e) {
-  const explodingChar = emoji.innerText;
-  emoji.style.opacity = "0"; // Hide emoji
+// Without throttle: 60 calculations per second = expensive
+// With throttle (100ms): ~10 calculations per second = smooth & efficient
+```
 
-  for (let i = 0; i < 15; i++) {
-    createParticle(explodingChar, e.clientX, e.clientY);
-  }
+### Flee Cooldown
 
-  setTimeout(() => {
-    setNewEmoji(); // New emoji appears
-    emoji.style.opacity = "1"; // Show new emoji
-  }, 400);
-}
+Prevents spam fleeing:
+
+```javascript
+// Emoji can only flee once per second
+// Prevents jumpy, erratic behavior
+// Gives user time to track emoji
+```
+
+### Boundary Detection
+
+Keeps emoji on screen:
+
+```javascript
+const maxX = window.innerWidth - emojiSize.width;
+const maxY = window.innerHeight - emojiSize.height;
+// Random position always within bounds
 ```
 
 ---
 
-## 💾 LocalStorage Features
+## 🎨 CSS Animations
 
-### Mode Persistence
-
-```javascript
-function setMode(mode) {
-  currentMode = mode;
-  localStorage.setItem("emojiMode", mode); // Save mode
-  updateModeToggleButton();
-}
-
-function loadSavedMode() {
-  const savedMode = localStorage.getItem("emojiMode");
-  if (savedMode) {
-    currentMode = savedMode; // Load saved mode
-  }
-  updateModeToggleButton();
-}
-```
-
-**Stores:**
-
-- Current mode (copy or explosion)
-- Persists across browser sessions
-- Auto-loads on page refresh
-- Loads on initial page load
-
----
-
-## 🎵 Sound Effects
-
-### Pop Sound
-
-- **File**: `pop.mp3`
-- **Trigger**: Every emoji change
-- **Playback**: Browser Web Audio API
-- **Error Handling**: Gracefully catches playback errors
-- **Browser Sound Policy**: Works with user interaction
-
-### Sound Implementation
-
-```javascript
-popSound.currentTime = 0; // Reset sound
-popSound.play().catch((err) => {
-  console.log("Sound play prevented:", err);
-});
-```
-
----
-
-## ✨ Animation System
-
-### Wobble Animation (Hover)
+### Emoji Movement Animation
 
 ```css
-@keyframes wobble {
-  0% {
-    transform: rotate(0deg) scale(1.3);
-  }
-  25% {
-    transform: rotate(5deg) scale(1.3);
-  }
-  50% {
-    transform: rotate(-5deg) scale(1.3);
-  }
-  75% {
-    transform: rotate(5deg) scale(1.3);
-  }
-  100% {
-    transform: rotate(0deg) scale(1.3);
-  }
-}
-
-#emoji:hover {
-  animation: wobble 0.3s ease-in-out;
-  filter: grayscale(0);
+#emoji {
+  position: absolute;
+  transition-property: transform, filter, opacity, left, top;
+  transition-duration: 200ms, 200ms, 200ms, 300ms, 300ms;
+  transition-timing-function: ease, ease, ease, ease-out, ease-out;
 }
 ```
 
-### Particle Animation (Click - Explosion Mode)
+**Duration Breakdown:**
+
+- Transform, filter, opacity: 200ms (faster - for hovering)
+- Left, top: 300ms (slower - for fleeing animation)
+- Different easing for smooth movement
+
+### Notification Animations
+
+**Slide Up (Appear):**
 
 ```css
-@keyframes particle-burst {
-  0% {
-    transform: translate(0, 0) scale(1);
+@keyframes slideUp {
+  from {
+    transform: translateX(-50%) translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(-50%) translateY(0);
     opacity: 1;
   }
-  100% {
-    transform: translate(var(--tx), var(--ty)) scale(0.3);
+}
+```
+
+**Slide Down (Disappear):**
+
+```css
+@keyframes slideDown {
+  to {
+    transform: translateX(-50%) translateY(20px);
     opacity: 0;
   }
 }
-
-.particle {
-  position: fixed;
-  animation: particle-burst 0.8s ease-out forwards;
-  font-size: 2rem;
-  pointer-events: none;
-}
 ```
-
-### Notification Animation (Copy Mode)
-
-```css
-.notification {
-  opacity: 1;
-  transition: opacity 0.3s ease;
-}
-
-.notification.fade-out {
-  opacity: 0;
-}
-```
-
-### Animation Details
-
-| Animation         | Duration | Trigger           | Effect                  |
-| ----------------- | -------- | ----------------- | ----------------------- |
-| Wobble            | 0.3s     | Hover             | Rotate ±5° + Scale 1.3x |
-| Particle Burst    | 0.8s     | Click (Explosion) | Fly outward + fade      |
-| Fade Notification | 0.3s     | Show/hide         | Opacity change          |
-| Transition        | 200ms    | Hover             | Filter + transform      |
-
----
-
-## 🎯 Interaction Flow
-
-### Copy Mode Flow
-
-```
-Hover emoji → New emoji + pop sound
-Click emoji → Copy to clipboard
-           → Show "Copied! 📋" notification
-           → Fade notification after 1.5s
-```
-
-### Explosion Mode Flow
-
-```
-Hover emoji → New emoji + pop sound
-Click emoji → Create 15 particles
-           → Particles burst outward
-           → Emoji disappears (opacity: 0)
-           → After 400ms: New emoji appears
-           → Particles fade and remove (800ms)
-```
-
-### Mode Toggle Flow
-
-```
-Click mode button → Toggle between modes
-                 → Update button text/color
-                 → Save mode to localStorage
-                 → Update mode on page load
-```
-
----
-
-## 🎨 UI Components
-
-### Mode Toggle Button
-
-```html
-<button
-  id="modeToggle"
-  class="mode-toggle"
-  title="Toggle between Copy and Explosion mode"
->
-  📋 Copy Mode
-</button>
-```
-
-**Styling:**
-
-- Fixed position (top-right)
-- Red background (#ff6b6b)
-- Rounded pill shape (border-radius: 25px)
-- Hover effects with color change
-- Transform on hover for depth
-
-**States:**
-
-- Copy Mode: "📋 Copy Mode" (red background)
-- Explosion Mode: "💥 Explosion Mode" (special class styling)
-
-### Notification Toast
-
-```javascript
-function showNotification(message, duration = 1500) {
-  const notification = document.createElement("div");
-  notification.classList.add("notification");
-  notification.innerText = message;
-  document.body.appendChild(notification);
-
-  setTimeout(() => {
-    notification.classList.add("fade-out");
-    setTimeout(() => notification.remove(), 300);
-  }, duration);
-}
-```
-
-**Features:**
-
-- Auto-positioning (centered, bottom)
-- Auto-fade after duration
-- Removes from DOM after fade
-- Supports custom duration
-- Handles multiple notifications
 
 ---
 
@@ -474,6 +340,156 @@ function showNotification(message, duration = 1500) {
 - Clear visual feedback
 - Sound confirmation optional
 - Tooltips for buttons
+
+---
+
+## 🎮 Mode System
+
+### Available Modes
+
+| Mode          | Icon | Function                | Trigger     |
+| ------------- | ---- | ----------------------- | ----------- |
+| **Copy**      | 📋   | Copy emoji to clipboard | Click emoji |
+| **Explosion** | 💥   | Create particle burst   | Click emoji |
+
+### Switching Modes
+
+```javascript
+modeToggle.addEventListener("click", () => {
+  currentMode = currentMode === "copy" ? "explosion" : "copy";
+  setMode(currentMode);
+});
+```
+
+**Features:**
+
+- Button text updates
+- Button color changes (Red/Purple)
+- Mode saves to localStorage
+- Persists across page reloads
+
+---
+
+## 🔊 Sound & Haptics
+
+### Pop Sound
+
+- **Trigger**: Every emoji hover
+- **Format**: MP3
+- **Error Handling**: Graceful fallback
+
+### Vibration Feedback
+
+- **Support**: Mobile devices
+- **Trigger**: Copy mode activation
+- **Duration**: 50ms vibration
+- **Fallback**: Works without vibration
+
+---
+
+## 💾 LocalStorage Features
+
+### Mode Persistence
+
+```javascript
+function setMode(mode) {
+  currentMode = mode;
+  localStorage.setItem("emojiMode", mode); // Save mode
+  updateModeToggleButton();
+}
+
+function loadSavedMode() {
+  const savedMode = localStorage.getItem("emojiMode");
+  if (savedMode) {
+    currentMode = savedMode; // Load saved mode
+  }
+  updateModeToggleButton();
+}
+```
+
+**Stores:**
+
+- Current mode (copy or explosion)
+- Persists across browser sessions
+- Auto-loads on page load
+
+---
+
+## 📊 Performance Metrics
+
+### File Sizes
+
+- **HTML**: ~594 bytes
+- **CSS**: ~2.5 KB
+- **JavaScript**: ~5 KB (with chase system)
+- **Audio**: ~35 KB (pop.mp3)
+- **Total**: ~43 KB
+
+### Runtime Performance
+
+- **Animation**: 60fps smooth
+- **Distance Calculations**: Throttled 100ms
+- **Memory**: Minimal footprint
+- **CPU**: Negligible usage
+- **Throttle Efficiency**: ~90% reduction in calculations
+
+---
+
+## 🎯 Event System
+
+### Mouse Movement
+
+```javascript
+document.addEventListener("mousemove", throttledCheck);
+// Throttled to 100ms intervals
+// Calculates distance only when needed
+```
+
+### Hover Detection
+
+```javascript
+emoji.addEventListener("mouseover", () => {
+  setNewEmoji(); // Generate new emoji
+});
+```
+
+### Click Interaction
+
+```javascript
+emoji.addEventListener("click", (e) => {
+  if (currentMode === "copy") {
+    handleCopyMode(e);
+  } else if (currentMode === "explosion") {
+    handleExplosionMode(e);
+  }
+});
+```
+
+### Mode Toggle
+
+```javascript
+modeToggle.addEventListener("click", () => {
+  currentMode = currentMode === "copy" ? "explosion" : "copy";
+  setMode(currentMode);
+});
+```
+
+---
+
+## 🎬 Initialization Sequence
+
+```javascript
+loadSavedMode(); // Load saved mode from localStorage
+setNewEmoji(); // Display initial emoji
+moveEmoji(); // Initial flee on page load
+```
+
+**On Page Load:**
+
+1. Load user's saved mode preference
+2. Display random emoji
+3. Emoji immediately flees from center
+4. Ready for interaction
 
 ---
 
@@ -529,27 +545,32 @@ popSound.play().catch((err) => {
 
 ---
 
-## 🎯 Performance
-
-### Load Time
-
-- **HTML**: ~594 bytes
-- **CSS**: ~2,371 bytes
-- **JavaScript**: ~3,777 bytes
-- **Audio**: ~35 KB (pop.mp3)
-- **Total**: ~41 KB (lightweight)
-
-### Runtime Performance
-
-- **Animation**: 60fps smooth
-- **Sound**: Instant playback
-- **Memory**: Minimal footprint
-- **CPU Usage**: Negligible
-- **Particle System**: 8 particles per burst
-
----
-
 ## 💡 Customization Ideas
+
+### Adjust Chase Parameters
+
+```javascript
+// Change proximity distance (currently 150px)
+if (distance < 200) {
+  // More reactive
+  moveEmoji();
+}
+
+// Change cooldown (currently 1000ms)
+setTimeout(() => {
+  isEmojiFleeing = false;
+}, 500); // Faster cooldown
+```
+
+### Adjust Animation Speed
+
+```css
+/* Faster flee (currently 300ms) */
+transition-duration: 200ms, 200ms, 200ms, 200ms, 200ms;
+
+/* Slower flee (currently 300ms) */
+transition-duration: 200ms, 200ms, 200ms, 500ms, 500ms;
+```
 
 ### Add More Emojis
 
@@ -569,67 +590,48 @@ body {
   background-color: #ff6b6b; /* New background */
 }
 
-.mode-toggle {
-  background-color: #4a90e2; /* Button color */
+.mode-toggle.explosion-mode {
+  background-color: #4a90e2; /* Different purple */
 }
-```
-
-### Adjust Animation Speed
-
-```css
-#emoji:hover {
-  animation: wobble 0.5s ease-in-out; /* Slower */
-}
-```
-
-### Modify Particle Count
-
-```javascript
-for (let i = 0; i < 20; i++) {
-  // More particles
-  createParticle(explodingChar, e.clientX, e.clientY);
-}
-```
-
-### Change Notification Duration
-
-```javascript
-showNotification("Copied! 📋", 2000); // Longer display
 ```
 
 ---
 
 ## 🚨 Troubleshooting
 
-### Sound Not Playing
+### Emoji Not Fleeing
 
-- **Cause**: Browser sound policy requires user interaction
-- **Solution**: Interact with emoji first (hover or click)
-- **Check**: Browser console for error messages
+- Check browser console for errors
+- Ensure mousemove event listener attached
+- Verify CSS transition properties applied
+- Test on different browser
+
+### Emoji Fleeing Too Fast
+
+- Increase cooldown timeout (currently 1000ms)
+- Adjust throttle delay (currently 100ms)
+- Check CSS transition-duration (300ms)
+
+### Performance Issues
+
+- Throttle value already optimized (100ms)
+- Reduce particle count if needed
+- Check browser GPU acceleration enabled
+- Close other applications
+
+### Positioning Issues
+
+- Verify position: absolute applied in CSS
+- Check left/top styles not conflicting
+- Ensure body has position: relative
+- Verify overflow: hidden on body
 
 ### Copy Not Working
 
-- **Cause**: Clipboard API not available or user denied permission
-- **Solution**: Check browser supports Clipboard API
-- **Fallback**: Shows "Copy failed ❌" notification
-
-### Particles Not Showing
-
-- **Cause**: CSS animation not applied or hidden
-- **Solution**: Check browser CSS support
-- **Check**: Clear cache and reload page
-
-### Emoji Not Displaying
-
-- **Cause**: Browser doesn't support Unicode emoji
-- **Solution**: Update browser to latest version
-- **Check**: Works on all modern browsers
-
-### Mode Not Saving
-
-- **Cause**: localStorage disabled or quota exceeded
-- **Solution**: Check browser allows localStorage
-- **Fallback**: Still works, just doesn't persist
+- Check Clipboard API support
+- Verify browser permissions
+- Check browser console for errors
+- Try different browser if issue persists
 
 ---
 
@@ -718,35 +720,40 @@ popSound.play().catch((err) => {
 
 ---
 
-## 📝 Version Comparison
+## 🤝 Version Evolution
 
-| Feature                   | v1.0 | v2.0 |
-| ------------------------- | ---- | ---- |
-| **Random Emojis**         | ✅   | ✅   |
-| **Hover Interaction**     | ✅   | ✅   |
-| **Sound Effects**         | ✅   | ✅   |
-| **Wobble Animation**      | ✅   | ✅   |
-| **Copy Mode**             | ❌   | ✅   |
-| **Explosion Mode**        | ❌   | ✅   |
-| **Mode Toggle**           | ❌   | ✅   |
-| **Clipboard Integration** | ❌   | ✅   |
-| **Particle Effects**      | ❌   | ✅   |
-| **Notifications**         | ❌   | ✅   |
-| **Mode Persistence**      | ❌   | ✅   |
-| **Vibration Feedback**    | ❌   | ✅   |
+| Feature                   | v1.0 | v2.0 | v3.0 |
+| ------------------------- | ---- | ---- | ---- |
+| **Random Emojis**         | ✅   | ✅   | ✅   |
+| **Hover Interaction**     | ✅   | ✅   | ✅   |
+| **Sound Effects**         | ✅   | ✅   | ✅   |
+| **Wobble Animation**      | ✅   | ✅   | ✅   |
+| **Copy Mode**             | ❌   | ✅   | ✅   |
+| **Explosion Mode**        | ❌   | ✅   | ✅   |
+| **Mode Toggle**           | ❌   | ✅   | ✅   |
+| **Clipboard Integration** | ❌   | ✅   | ✅   |
+| **Particle Effects**      | ❌   | ✅   | ✅   |
+| **Notifications**         | ❌   | ✅   | ✅   |
+| **LocalStorage**          | ❌   | ✅   | ✅   |
+| **🏃 Chase System**       | ❌   | ❌   | ✅   |
+| **Proximity Detection**   | ❌   | ❌   | ✅   |
+| **Throttled Movement**    | ❌   | ❌   | ✅   |
+| **Position Animation**    | ❌   | ❌   | ✅   |
 
 ---
 
 ## 📚 Technical Stack
 
 - **Markup**: HTML5 (semantic structure)
-- **Styling**: CSS3 (animations, filters, particles)
+- **Styling**: CSS3 (animations, transitions, positioning)
 - **Logic**: Vanilla JavaScript (no frameworks)
+- **Positioning**: Absolute + Transform (smooth animations)
+- **Events**: Mousemove, Mouseover, Click
 - **Audio**: Web Audio API (MP3 format)
 - **Storage**: LocalStorage API (mode persistence)
-- **Clipboard**: Clipboard API (copy functionality)
 - **Haptics**: Vibration API (mobile feedback)
-- **Performance**: Lightweight and optimized
+- **Math**: Pythagorean theorem (distance calculation)
+- **Performance**: Throttling (100ms intervals)
 
 ---
 
@@ -765,27 +772,22 @@ popSound.play().catch((err) => {
 
 ### For Best Experience
 
-- Use on desktop for smooth animations
-- Ensure speaker is enabled for sound
-- Update browser to latest version
-- Use in fullscreen for immersive experience
-
-### Productivity Hack
-
-- Use as mood tracker throughout day
-- Generate random emoji for decisions
-- Use as visual break from screens
-- Combine with timer for Pomodoro technique
+- Use on desktop for smooth chase experience
+- Move mouse slowly to watch emoji strategically flee
+- Try rapid mouse movements to chase fast
+- Use fullscreen for larger interaction area
+- Try both Copy and Explosion modes
 
 ### Fun Ideas
 
-- Challenge friends to collect all emojis
-- Create emoji sequences by rapid clicking
-- Use to express emotions quickly
-- Share fun emoji combinations
+- Compete with friends to catch emoji
+- Time how long you can chase it
+- Try to predict emoji escape path
+- Mix Copy and Explosion modes
+- Play with different movement speeds
 
 ---
 
 **Built with ❤️ by Saurabh Chauhan for emoji lovers everywhere! 😊✨**
 
-_A simple, fun, and delightful way to bring random emojis into your day!_
+_Chase, catch, copy, and explode with interactive emojis!_

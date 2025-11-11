@@ -1,5 +1,9 @@
 const emoji = document.querySelector("#emoji");
 const popSound = document.querySelector("#popSound");
+const modeToggle = document.querySelector("#modeToggle");
+
+let throttleTimeout = null;
+let isEmojiFleeing = false;
 
 const emojis = [
   "😆",
@@ -51,12 +55,52 @@ function setNewEmoji() {
   popSound.play().catch((err) => console.log("Sound play prevented:", err));
 }
 
+function moveEmoji() {
+  if (isEmojiFleeing) return;
+  isEmojiFleeing = true;
+  const emojiSize = emoji.getBoundingClientRect();
+  const maxX = window.innerWidth - emojiSize.width;
+  const maxY = window.innerHeight - emojiSize.height;
+  const randomX = Math.random() * maxX;
+  const randomY = Math.random() * maxY;
+  emoji.style.left = randomX + "px";
+  emoji.style.top = randomY + "px";
+  emoji.style.transform = "translate(0, 0)";
+  setTimeout(() => {
+    isEmojiFleeing = false;
+  }, 1000);
+}
+
 emoji.addEventListener("mouseover", () => {
   setNewEmoji();
+  // moveEmoji();
+});
+
+document.addEventListener("mousemove", (e) => {
+  if (throttleTimeout) return;
+  throttleTimeout = setTimeout(() => {
+    if (isEmojiFleeing) {
+      throttleTimeout = null;
+      return;
+    }
+
+    const emojiRect = emoji.getBoundingClientRect();
+    const emojiCenterX = emojiRect.left + emojiRect.width / 2;
+    const emojiCenterY = emojiRect.top + emojiRect.height / 2;
+    const distance = Math.sqrt(
+      Math.pow(e.clientX - emojiCenterX, 2) +
+        Math.pow(e.clientY - emojiCenterY, 2)
+    );
+
+    if (distance < 150) {
+      moveEmoji();
+    }
+
+    throttleTimeout = null;
+  }, 100);
 });
 
 let currentMode = "copy";
-
 function setMode(mode) {
   currentMode = mode;
   localStorage.setItem("emojiMode", mode);
@@ -104,7 +148,6 @@ function showNotification(message, duration = 1500) {
 function handleCopyMode(e) {
   setNewEmoji();
   const currentEmoji = emoji.innerText;
-
   navigator.clipboard
     .writeText(currentEmoji)
     .then(() => {
@@ -139,6 +182,7 @@ function createParticle(emojiChar, x, y) {
   particle.style.setProperty("--ty", ty + "px");
 
   document.body.appendChild(particle);
+
   setTimeout(() => particle.remove(), 800);
 }
 
@@ -155,6 +199,7 @@ function handleExplosionMode(e) {
     setNewEmoji();
     emoji.style.opacity = "1";
     emoji.style.transform = "scale(1.1)";
+
     setTimeout(() => {
       emoji.style.transform = "";
     }, 150);
@@ -171,3 +216,4 @@ emoji.addEventListener("click", (e) => {
 
 loadSavedMode();
 setNewEmoji();
+moveEmoji();

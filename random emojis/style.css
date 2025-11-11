@@ -1,18 +1,21 @@
 body {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   background-color: #ccc;
+  position: relative;
+  overflow: hidden;
+  min-height: 100vh;
 }
 
 #emoji {
   font-size: 10rem;
   filter: grayscale(1);
   cursor: pointer;
-  transition-property: transform, filter, opacity;
-  transition-duration: 200ms;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition-property: transform, filter, opacity, left, top;
+  transition-duration: 200ms, 200ms, 200ms, 300ms, 300ms;
+  transition-timing-function: ease, ease, ease, ease-out, ease-out;
 }
 
 @keyframes wobble {

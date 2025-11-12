@@ -1,5 +1,22 @@
+/* v4.0 */
+
+:root {
+  --bg-color: #ccc;
+  --text-color: #000;
+  --btn-bg: #fff;
+  --btn-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+body.dark-mode {
+  --bg-color: #1a1a1a;
+  --text-color: #fff;
+  --btn-bg: #333;
+  --btn-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
 body {
-  background-color: #ccc;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s, color 0.3s;
   position: relative;
   overflow: hidden;
   min-height: 100vh;
@@ -41,10 +58,34 @@ body {
   filter: grayscale(0);
 }
 
-.mode-toggle {
+.controls-container {
   position: fixed;
   top: 20px;
   right: 20px;
+  display: flex;
+  gap: 10px;
+  z-index: 1000;
+}
+
+.theme-toggle {
+  padding: 10px 15px;
+  background-color: var(--btn-bg);
+  color: var(--text-color);
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: transform 0.2s ease;
+  box-shadow: var(--btn-shadow);
+}
+.theme-toggle:hover {
+  transform: scale(1.05);
+}
+.theme-toggle:active {
+  transform: scale(0.98);
+}
+
+.mode-toggle {
   padding: 10px 15px;
   background-color: #ff6b6b;
   color: white;
@@ -55,7 +96,7 @@ body {
   font-weight: bold;
   transition: background-color 0.3s ease, transform 0.2s ease;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  z-index: 1000;
+  z-index: 1;
 }
 .mode-toggle:hover {
   background-color: #ff5252;
@@ -69,6 +110,44 @@ body {
 }
 .mode-toggle.explosion-mode:hover {
   background-color: #9370db;
+}
+
+#filters {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--btn-bg);
+  padding: 8px;
+  border-radius: 25px;
+  box-shadow: var(--btn-shadow);
+  z-index: 1000;
+  display: flex;
+  gap: 5px;
+}
+.filter-btn {
+  padding: 8px 15px;
+  border: none;
+  border-radius: 20px;
+  background-color: transparent;
+  color: var(--text-color);
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+.filter-btn:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+.filter-btn.active {
+  background-color: #a78bfa;
+  color: white;
+}
+body.dark-mode .filter-btn:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+body.dark-mode .filter-btn.active {
+  background-color: #a78bfa;
+  color: white;
 }
 
 .particle {
@@ -120,5 +199,40 @@ body {
   to {
     transform: translateX(-50%) translateY(20px);
     opacity: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  #emoji {
+    font-size: 8rem;
+  }
+
+  #filters {
+    top: 10px;
+    left: 10px;
+    transform: translateX(0);
+    padding: 5px;
+    gap: 3px;
+  }
+  .filter-btn {
+    font-size: 0.8rem;
+    padding: 6px 10px;
+  }
+
+  .controls-container {
+    top: 10px;
+    right: 10px;
+    gap: 5px;
+  }
+  .theme-toggle,
+  .mode-toggle {
+    font-size: 0.8rem;
+    padding: 6px 10px;
+  }
+
+  .notification {
+    font-size: 0.8rem;
+    padding: 10px 15px;
+    width: 90%;
   }
 }

@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -7,14 +8,36 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <button
-      id="modeToggle"
-      class="mode-toggle"
-      title="Toggle between Copy and Explosion mode"
-    >
-      📋 Copy Mode
-    </button>
-    <div id="emoji"></div>
+    <div class="controls-container">
+      <button
+        id="themeToggle"
+        class="theme-toggle"
+        title="Toggle Dark/Light Mode"
+      >
+        🌙
+      </button>
+      <button
+        id="modeToggle"
+        class="mode-toggle"
+        title="Toggle between Copy and Explosion mode"
+      >
+        📋 Copy Mode
+      </button>
+    </div>
+
+    <div id="filters">
+      <button class="filter-btn active" data-category="all">All</button>
+      <button class="filter-btn" data-category="happy">Happy</button>
+      <button class="filter-btn" data-category="funny">Funny</button>
+      <button class="filter-btn" data-category="spooky">Spooky</button>
+    </div>
+
+    <div
+      id="emoji"
+      role="img"
+      aria-live="polite"
+      aria-label="Random emoji"
+    ></div>
 
     <audio id="popSound" src="pop.mp3"></audio>
 

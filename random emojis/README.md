@@ -1,159 +1,331 @@
-# 😆 Random Emoji Generator - v3.0
+# 😆 Random Emoji Generator - v4.0
 
 ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
+![JSON](https://img.shields.io/badge/JSON-Data_Driven-blue?style=for-the-badge)
 ![Audio](https://img.shields.io/badge/Audio-MP3_Support-blue?style=for-the-badge)
 
 A fun, interactive web application that displays random emojis with engaging animations and sound effects.
 
-**NEW in v3.0: Emoji runs away when you get close - Chase Mode! Plus Copy and Explosion modes!**
+**NEW in v4.0: Dark/Light Theme Toggle, Category Filters, JSON-based Emoji Management, Accessibility Features, and Mobile Optimization!**
 
-## 🆕 What's New in v3.0
+## 🆕 What's New in v4.0
 
-### 🏃 **Emoji Chase/Flee System** ⭐⭐ NEW (MAJOR)
+### 🌙 **Dark/Light Theme System** ⭐⭐ NEW (MAJOR)
 
-- **Auto-Fleeing Emoji** - Emoji runs away when mouse gets within 150px
-- **Smooth Position Animation** - 300ms transition with ease-out
-- **Throttled Movement Detection** - 100ms throttle for performance
-- **Flee Cooldown** - 1 second cooldown between flees
-- **Initial Flee** - Emoji starts by fleeing on page load
-- **Distance-Based Detection** - Calculates real-time distance using math
-- **Smooth Repositioning** - Emoji animates to new position smoothly
+- **Theme Toggle Button** - 🌙/☀️ button in top-right
+- **CSS Variables** - Dynamic color scheme management
+- **Persistent Theme** - Saves theme preference with localStorage
+- **Light Mode** - Default light gray background
+- **Dark Mode** - Professional dark background (#1a1a1a)
+- **Smooth Transitions** - 0.3s color transitions
+- **Button Adaptation** - All buttons adapt to theme
+- **Complete Coverage** - All UI elements theme-aware
 
-### 🎮 **Improved Positioning System** ⭐ NEW
+### 📁 **JSON-Based Emoji Management** ⭐⭐ NEW (MAJOR)
 
-- **Absolute Positioning** - Emoji uses absolute positioning
-- **Center Start Position** - Starts at center of screen
-- **Viewport Boundary Detection** - Stays within screen bounds
-- **Transform & Position Transitions** - Simultaneous smooth animations
-- **No Flexbox Centering** - Uses left/top positioning with transform
+- **emojis.json File** - Centralized emoji data storage
+- **Category System** - Emojis organized by category
+- **Async Loading** - Fetch API for JSON data
+- **Error Handling** - Graceful fallback on load failure
+- **Emoji Metadata** - Each emoji has character, name, category
+- **Easy Maintenance** - Add emojis without touching code
+- **Scalable Structure** - Handle 100+ emojis easily
 
-### ⚡ **Performance Optimizations** ⭐ NEW
+### 🔖 **Category Filter System** ⭐⭐ NEW (MAJOR)
 
-- **Event Throttling** - 100ms delay on mousemove detection
-- **Throttle Timeout** - Prevents rapid recalculations
-- **Flee State Flag** - Prevents overlapping flee animations
-- **Early Return Checks** - Stops unnecessary calculations
-- **Efficient Distance Math** - Uses Pythagorean theorem
+- **Filter Bar** - Centered filter buttons at top
+- **Multiple Categories** - All, Happy, Funny, Spooky, etc.
+- **Active State Styling** - Purple highlight for active filter
+- **Category Filtering** - Shows emojis from selected category
+- **Dynamic Updates** - Click to filter and generate new emoji
+- **Mobile Responsive** - Adapts to smaller screens
+- **Easy to Extend** - Add new categories in JSON
 
-### 💻 **Enhanced CSS Transitions** ⭐ NEW
+### ♿ **Accessibility Enhancements** ⭐ NEW
 
-- **Multi-Property Transitions** - Transform, filter, opacity, left, top
-- **Variable Durations** - Different speeds for different properties
-- **Ease-Out Timing** - Smooth deceleration for position changes
-- **z-index Management** - Proper layering for particles and buttons
-- **Smooth Position Updates** - Professional movement animations
+- **ARIA Labels** - Screen reader support for emojis
+- **aria-live Region** - Announces emoji changes
+- **aria-label Updates** - Each emoji has descriptive label
+- **Role Attributes** - Proper semantic roles
+- **Keyboard Support** - Full keyboard navigation
+- **Error Messages** - Accessible error feedback
+- **Semantic HTML** - Proper document structure
 
-### 📊 **Tooltip Notifications** ⭐ ENHANCED
+### 💾 **Enhanced LocalStorage** ⭐ NEW
 
-- **SlideUp Animation** - Notifications slide up on appear
-- **SlideDown Animation** - Notifications slide down on disappear
-- **Bottom Centered Position** - Fixed position at screen bottom
-- **Professional Styling** - Dark background with white text
-- **Auto Fade** - Smooth fade-out after duration
+- **Theme Persistence** - Dark/Light mode saves
+- **Mode Persistence** - Copy/Explosion mode saves
+- **Last Emoji Saved** - Remember last displayed emoji
+- **Smart Loading** - Load saved emoji on page load
+- **Error Recovery** - Handle corrupted saved data
 
-### 🎯 **Complete Feature Set** (v2 Features Retained)
+### 📱 **Mobile Optimization** ⭐ NEW
 
-- **Two Interactive Modes** - Copy Mode (📋) and Explosion Mode (💥)
-- **Mode Toggle Button** - Switch between modes
-- **Copy Functionality** - Emoji copies to clipboard
-- **Particle Explosion** - 15 particles burst outward
-- **LocalStorage Persistence** - Mode saves across sessions
-- **Vibration Feedback** - Mobile haptic feedback
-- **Sound Effects** - Pop sound on emoji change
+- **Responsive Layout** - Works on all screen sizes
+- **Media Query** - Optimized for tablets/phones
+- **Smaller Emoji Size** - 8rem for mobile (10rem desktop)
+- **Adjusted Buttons** - Smaller text and padding
+- **Touch-Friendly** - Larger tap targets
+- **Filter Repositioning** - Left corner on mobile
+- **Optimized Spacing** - Fits mobile screens
+
+### 🎮 **Improved State Management** ⭐ NEW
+
+- **Click Cooldown** - Prevents rapid mode switching
+- **Initialize Function** - Centralized app startup
+- **DOMContentLoaded** - Waits for DOM before loading
+- **Sequential Loading** - Theme → Mode → Filters → Emojis
+- **Error Prevention** - Null checks and try-catch
+
+### 🔧 **Code Organization** ⭐ NEW
+
+- **Function Grouping** - Related functions together
+- **Clear Comments** - v4.0 version markers
+- **Single Responsibility** - Each function does one thing
+- **Reusable Components** - Filter listeners, theme toggle
+- **Consistent Naming** - Clear variable names
+
+### 📊 **Complete Feature Set** (v3 Features Retained)
+
+- **Emoji Chase System** - Emoji runs away when close
+- **Two Interactive Modes** - Copy & Explosion
+- **Sound Effects** - Pop on emoji change
+- **Wobble Animation** - Hover effects
+- **Throttled Movement** - Performance optimized
+- **Particle Effects** - 15 particles on explosion
+- **Notifications** - Toast feedback
 
 ---
 
 ## 🎯 Features
 
-### 🏃 Chase/Flee System (v3 Core Feature)
+### 🌙 Theme System
 
-**How It Works:**
+**Light Mode (Default):**
 
-1. **Mousemove Tracking** - Continuous mouse position monitoring
-2. **Distance Calculation** - Real-time distance to emoji center
-3. **Proximity Detection** - Triggers when distance < 150px
-4. **Flee Animation** - Emoji moves to random position on screen
-5. **Cooldown Period** - 1 second before next flee allowed
-6. **Boundary Protection** - Keeps emoji within viewport
+```
+Background: #ccc (light gray)
+Text: #000 (black)
+Buttons: #fff (white)
+Shadows: rgba(0, 0, 0, 0.15)
+```
 
-**JavaScript Implementation:**
+**Dark Mode:**
 
-```javascript
-// Track mouse movement with throttle
-document.addEventListener("mousemove", (e) => {
-  if (throttleTimeout) return;
-  throttleTimeout = setTimeout(() => {
-    const emojiRect = emoji.getBoundingClientRect();
-    const emojiCenterX = emojiRect.left + emojiRect.width / 2;
-    const emojiCenterY = emojiRect.top + emojiRect.height / 2;
+```
+Background: #1a1a1a (very dark)
+Text: #fff (white)
+Buttons: #333 (dark gray)
+Shadows: rgba(0, 0, 0, 0.4)
+```
 
-    // Distance using Pythagorean theorem
-    const distance = Math.sqrt(
-      Math.pow(e.clientX - emojiCenterX, 2) +
-        Math.pow(e.clientY - emojiCenterY, 2)
-    );
+**CSS Variables:**
 
-    if (distance < 150) {
-      moveEmoji(); // Flee!
-    }
+```css
+:root {
+  --bg-color: #ccc;
+  --text-color: #000;
+  --btn-bg: #fff;
+  --btn-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
 
-    throttleTimeout = null;
-  }, 100); // Throttle: check every 100ms
-});
-
-// Move emoji to random position
-function moveEmoji() {
-  if (isEmojiFleeing) return; // Prevent overlapping
-  isEmojiFleeing = true;
-
-  const emojiSize = emoji.getBoundingClientRect();
-  const maxX = window.innerWidth - emojiSize.width;
-  const maxY = window.innerHeight - emojiSize.height;
-  const randomX = Math.random() * maxX;
-  const randomY = Math.random() * maxY;
-
-  emoji.style.left = randomX + "px";
-  emoji.style.top = randomY + "px";
-  emoji.style.transform = "translate(0, 0)";
-
-  setTimeout(() => {
-    isEmojiFleeing = false; // Cooldown ends
-  }, 1000);
+body.dark-mode {
+  --bg-color: #1a1a1a;
+  --text-color: #fff;
+  --btn-bg: #333;
+  --btn-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
 }
 ```
 
-### Copy Mode & Explosion Mode (v2 Features)
+**Toggle Implementation:**
 
-**Copy Mode:**
+```javascript
+themeToggle.addEventListener("click", () => {
+  document.body.classList.toggle("dark-mode");
+  const isDark = document.body.classList.contains("dark-mode");
+  localStorage.setItem("theme", isDark ? "dark" : "light");
+  themeToggle.innerText = isDark ? "☀️" : "🌙";
+});
 
-- Click emoji to copy to clipboard
-- Shows "Copied! 📋" notification
-- Mobile vibration feedback
+function loadSavedTheme() {
+  const savedTheme = localStorage.getItem("theme");
+  if (savedTheme === "dark") {
+    document.body.classList.add("dark-mode");
+    themeToggle.innerText = "☀️";
+  }
+}
+```
 
-**Explosion Mode:**
+### 📁 JSON Emoji System
 
-- Click emoji for particle burst
-- 8 particles with trajectory
-- Celebratory visual effect
+**emojis.json Structure:**
 
-### Core Interactions
+```json
+[
+  {
+    "char": "😂",
+    "name": "Face with tears of joy",
+    "category": "happy"
+  },
+  {
+    "char": "👻",
+    "name": "Ghost",
+    "category": "spooky"
+  }
+]
+```
 
-- **Hover** - Generate new emoji with pop sound
-- **Mouse Proximity** - Emoji runs away when you get close
-- **Click** - Trigger Copy or Explosion mode
-- **Mode Toggle** - Switch between modes
+**Async Loading:**
+
+```javascript
+async function loadEmojis() {
+  try {
+    const response = await fetch("emojis.json");
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const data = await response.json();
+    emojis = data; // Store globally
+    loadLastEmoji();
+  } catch (error) {
+    console.error("Failed to load emojis:", error);
+    emoji.innerText = "❌";
+  }
+}
+```
+
+**Benefits:**
+
+- ✅ Centralized emoji management
+- ✅ Easy to add/remove emojis
+- ✅ Structured metadata per emoji
+- ✅ No code changes needed
+- ✅ Scales to 100+ emojis
+
+### 🔖 Category Filtering
+
+**Filter Implementation:**
+
+```javascript
+function setupFilterListeners() {
+  document.querySelectorAll(".filter-btn").forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      activeCategory = e.target.dataset.category;
+
+      // Update active button
+      document
+        .querySelectorAll(".filter-btn")
+        .forEach((b) => b.classList.remove("active"));
+      e.target.classList.add("active");
+
+      // Generate filtered emoji
+      setNewEmoji();
+    });
+  });
+}
+```
+
+**Category-Based Selection:**
+
+```javascript
+function setNewEmoji() {
+  let filteredEmojis = emojis;
+
+  // Filter by category if not "all"
+  if (activeCategory !== "all") {
+    filteredEmojis = emojis.filter((e) => e.category === activeCategory);
+  }
+
+  // Fallback to all if category empty
+  if (filteredEmojis.length === 0) {
+    filteredEmojis = emojis;
+  }
+
+  // Select random from filtered list
+  const randomEmoji =
+    filteredEmojis[Math.floor(Math.random() * filteredEmojis.length)];
+}
+```
+
+**Available Categories:**
+
+- All - All emojis
+- Happy - Happy/smiling emojis
+- Funny - Funny/laughing emojis
+- Spooky - Spooky/scary emojis
+- (Easily expandable)
+
+### ♿ Accessibility Features
+
+**ARIA Implementation:**
+
+```html
+<div id="emoji" role="img" aria-live="polite" aria-label="Random emoji"></div>
+```
+
+**Dynamic Label Updates:**
+
+```javascript
+emoji.setAttribute("aria-label", randomEmoji.name);
+// "Face with tears of joy"
+// "Rolling on the floor laughing"
+// etc.
+```
+
+**Benefits:**
+
+- Screen reader support
+- Descriptive emoji names
+- Polite announcements
+- Full keyboard navigation
+- Semantic HTML structure
+
+### 📱 Mobile Optimization
+
+**Media Query Adjustments:**
+
+```css
+@media (max-width: 768px) {
+  #emoji {
+    font-size: 8rem; /* Smaller for mobile */
+  }
+
+  #filters {
+    top: 10px;
+    left: 10px; /* Repositioned for mobile */
+    transform: translateX(0);
+  }
+
+  .filter-btn {
+    font-size: 0.8rem;
+    padding: 6px 10px;
+  }
+
+  .theme-toggle,
+  .mode-toggle {
+    font-size: 0.8rem;
+    padding: 6px 10px;
+  }
+
+  .notification {
+    font-size: 0.8rem;
+    width: 90%;
+  }
+}
+```
 
 ---
 
 ## 📦 File Structure
 
 ```
-random-emoji-v3/
-├── index.html       # Main HTML with mode toggle button
-├── app.js           # JavaScript with Chase & dual modes
-├── style.css        # Styling, animations, transitions
+random-emoji-v4/
+├── index.html       # Main HTML with theme, mode, filter buttons
+├── app.js           # JavaScript with all v4 features
+├── style.css        # Styling with CSS variables & theme
+├── emojis.json      # Emoji data with categories
 ├── pop.mp3          # Sound effect file
 └── README.md        # This documentation
 ```
@@ -204,292 +376,213 @@ random-emoji-v3/
 
 ---
 
-## 🎨 Emoji Collection
+## 🎨 UI Layout
 
-The application includes **40+ expressive emojis**:
+### Controls Positioning
 
-| Category         | Emojis         |
-| ---------------- | -------------- |
-| **Laughing**     | 😆 😅 🤣 😂 😀 |
-| **Smiling**      | 🙂 😊 😄 😃 😁 |
-| **Happy**        | 😗 😛 🤪 😜 🥰 |
-| **Neutral**      | 😏 🤨 🙃 🤔 😒 |
-| **Curious**      | 🧐 🤭 🥸 🤥    |
-| **Sleepy**       | 😴             |
-| **Sad/Stressed** | 🥺 😧 😬       |
-| **Special**      | 😇 😳 🥴 🤐    |
-| **Disgusted**    | 🤮 💩          |
-| **Scary**        | 😈 👻 👽 🤡 🤖 |
-
----
-
-## 🏃 Chase System Explained
-
-### Proximity Detection
-
-The emoji continuously monitors mouse position:
+**Desktop:**
 
 ```
-1. Mouse at (500, 300)
-2. Emoji at (400, 250)
-3. Calculate distance: √[(500-400)² + (300-250)²] = √[10000 + 2500] ≈ 112px
-4. Distance < 150px → FLEE!
+┌─────────────────────────────────────┐
+│ [Filter] [Filters] [Filter]         │
+│                                     │
+│    🌙     📋 Copy Mode             │
+│  (theme)  (mode)                    │
+│                                     │
+│          😊 (emoji)                 │
+│                                     │
+└─────────────────────────────────────┘
 ```
 
-### Throttling for Performance
+**Mobile:**
 
-Mousemove events fire ~60 times per second. Throttling reduces calculations:
-
-```javascript
-// Without throttle: 60 calculations per second = expensive
-// With throttle (100ms): ~10 calculations per second = smooth & efficient
 ```
-
-### Flee Cooldown
-
-Prevents spam fleeing:
-
-```javascript
-// Emoji can only flee once per second
-// Prevents jumpy, erratic behavior
-// Gives user time to track emoji
-```
-
-### Boundary Detection
-
-Keeps emoji on screen:
-
-```javascript
-const maxX = window.innerWidth - emojiSize.width;
-const maxY = window.innerHeight - emojiSize.height;
-// Random position always within bounds
+┌──────────────────────┐
+│ [Filter]             │
+│ [Filter]             │
+│                      │
+│ 🌙    📋            │
+│                      │
+│   😊 (emoji)         │
+│                      │
+└──────────────────────┘
 ```
 
 ---
 
-## 🎨 CSS Animations
+## 💾 LocalStorage Structure
 
-### Emoji Movement Animation
+### Saved Data
+
+```javascript
+// Theme
+localStorage.setItem("theme", "dark" or "light");
+
+// Mode
+localStorage.setItem("emojiMode", "copy" or "explosion");
+
+// Last Emoji
+localStorage.setItem("lastEmoji", JSON.stringify({
+  char: "😂",
+  name: "Face with tears of joy",
+  category: "happy"
+}));
+```
+
+### Auto-Loading
+
+```javascript
+function initializeApp() {
+  loadSavedMode(); // Restore mode
+  loadSavedTheme(); // Restore theme
+  setupFilterListeners(); // Setup filters
+  loadEmojis(); // Load from JSON
+}
+
+document.addEventListener("DOMContentLoaded", initializeApp);
+```
+
+---
+
+## 🎯 App Initialization Flow
+
+```
+1. Page loads
+2. DOM content loaded
+3. Load saved theme → Apply to body
+4. Load saved mode → Update button
+5. Setup filter listeners → Attach handlers
+6. Fetch emojis.json → Parse data
+7. Load last emoji → Display previous
+8. Generate new emoji → Show random
+9. Move emoji → Initial flee
+10. App ready for interaction
+```
+
+---
+
+## 📊 Emoji JSON Schema
+
+**Complete Structure:**
+
+```json
+[
+  {
+    "char": "😆",
+    "name": "Grinning squinting face",
+    "category": "happy"
+  },
+  {
+    "char": "🤣",
+    "name": "Rolling on the floor laughing",
+    "category": "funny"
+  },
+  {
+    "char": "👻",
+    "name": "Ghost",
+    "category": "spooky"
+  }
+]
+```
+
+**Adding New Emojis:**
+
+1. Open `emojis.json`
+2. Add new entry: `{ "char": "🎉", "name": "Party Popper", "category": "happy" }`
+3. Save file
+4. App automatically loads new emojis
+
+---
+
+## 🌙 Theme Implementation Details
+
+### CSS Variable System
+
+**All themed properties:**
+
+- `--bg-color`: Background color
+- `--text-color`: Text color
+- `--btn-bg`: Button background
+- `--btn-shadow`: Shadow effects
+
+**Usage in CSS:**
 
 ```css
-#emoji {
-  position: absolute;
-  transition-property: transform, filter, opacity, left, top;
-  transition-duration: 200ms, 200ms, 200ms, 300ms, 300ms;
-  transition-timing-function: ease, ease, ease, ease-out, ease-out;
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+.filter-btn {
+  background-color: var(--btn-bg);
+  box-shadow: var(--btn-shadow);
 }
 ```
 
-**Duration Breakdown:**
-
-- Transform, filter, opacity: 200ms (faster - for hovering)
-- Left, top: 300ms (slower - for fleeing animation)
-- Different easing for smooth movement
-
-### Notification Animations
-
-**Slide Up (Appear):**
-
-```css
-@keyframes slideUp {
-  from {
-    transform: translateX(-50%) translateY(20px);
-    opacity: 0;
-  }
-  to {
-    transform: translateX(-50%) translateY(0);
-    opacity: 1;
-  }
-}
-```
-
-**Slide Down (Disappear):**
-
-```css
-@keyframes slideDown {
-  to {
-    transform: translateX(-50%) translateY(20px);
-    opacity: 0;
-  }
-}
-```
-
----
-
-## 📱 Responsive Design
-
-### Desktop View
-
-- Large emoji display (10rem)
-- Full viewport utilization
-- Smooth animations on all interactions
-- Mode button in fixed position
-
-### Tablet/Mobile
-
-- Emoji scales responsively
-- Touch interactions supported
-- Mode toggle accessible
-- Particles work on touch events
-- Vibration feedback on compatible devices
-
-### Accessibility
-
-- High contrast with gray background
-- Large interactive targets
-- Clear visual feedback
-- Sound confirmation optional
-- Tooltips for buttons
-
----
-
-## 🎮 Mode System
-
-### Available Modes
-
-| Mode          | Icon | Function                | Trigger     |
-| ------------- | ---- | ----------------------- | ----------- |
-| **Copy**      | 📋   | Copy emoji to clipboard | Click emoji |
-| **Explosion** | 💥   | Create particle burst   | Click emoji |
-
-### Switching Modes
+**JavaScript Class Toggle:**
 
 ```javascript
-modeToggle.addEventListener("click", () => {
-  currentMode = currentMode === "copy" ? "explosion" : "copy";
-  setMode(currentMode);
-});
+// Enable dark mode
+document.body.classList.add("dark-mode");
+
+// Disable dark mode
+document.body.classList.remove("dark-mode");
+
+// Toggle
+document.body.classList.toggle("dark-mode");
 ```
 
-**Features:**
-
-- Button text updates
-- Button color changes (Red/Purple)
-- Mode saves to localStorage
-- Persists across page reloads
-
 ---
 
-## 🔊 Sound & Haptics
+## 🔖 Filter Categories
 
-### Pop Sound
+### Built-in Categories
 
-- **Trigger**: Every emoji hover
-- **Format**: MP3
-- **Error Handling**: Graceful fallback
+| Category   | Emojis                    |
+| ---------- | ------------------------- |
+| **All**    | All emojis mixed          |
+| **Happy**  | 😂 😆 😅 🤣 😀 🙂 😊 etc. |
+| **Funny**  | 🤪 😜 🤡 😈 etc.          |
+| **Spooky** | 👻 👽 🤖 💀 etc.          |
 
-### Vibration Feedback
+### Adding New Categories
 
-- **Support**: Mobile devices
-- **Trigger**: Copy mode activation
-- **Duration**: 50ms vibration
-- **Fallback**: Works without vibration
+**Step 1:** Add emojis to emojis.json
 
----
-
-## 💾 LocalStorage Features
-
-### Mode Persistence
-
-```javascript
-function setMode(mode) {
-  currentMode = mode;
-  localStorage.setItem("emojiMode", mode); // Save mode
-  updateModeToggleButton();
-}
-
-function loadSavedMode() {
-  const savedMode = localStorage.getItem("emojiMode");
-  if (savedMode) {
-    currentMode = savedMode; // Load saved mode
-  }
-  updateModeToggleButton();
-}
+```json
+{ "char": "🚀", "name": "Rocket", "category": "space" }
 ```
 
-**Stores:**
+**Step 2:** Add filter button to HTML
 
-- Current mode (copy or explosion)
-- Persists across browser sessions
-- Auto-loads on page load
+```html
+<button class="filter-btn" data-category="space">Space</button>
+```
+
+**Result:** Automatic filtering works!
 
 ---
 
-## 📊 Performance Metrics
+## ⚡ Performance Features
 
 ### File Sizes
 
-- **HTML**: ~594 bytes
-- **CSS**: ~2.5 KB
-- **JavaScript**: ~5 KB (with chase system)
-- **Audio**: ~35 KB (pop.mp3)
-- **Total**: ~43 KB
+- HTML: 1.2 KB
+- JavaScript: 7.5 KB
+- CSS: 4.6 KB
+- Emojis: 4.5 KB
+- Audio: 35 KB
+- **Total: 52.8 KB**
 
-### Runtime Performance
+### Optimizations
 
-- **Animation**: 60fps smooth
-- **Distance Calculations**: Throttled 100ms
-- **Memory**: Minimal footprint
-- **CPU**: Negligible usage
-- **Throttle Efficiency**: ~90% reduction in calculations
-
----
-
-## 🎯 Event System
-
-### Mouse Movement
-
-```javascript
-document.addEventListener("mousemove", throttledCheck);
-// Throttled to 100ms intervals
-// Calculates distance only when needed
-```
-
-### Hover Detection
-
-```javascript
-emoji.addEventListener("mouseover", () => {
-  setNewEmoji(); // Generate new emoji
-});
-```
-
-### Click Interaction
-
-```javascript
-emoji.addEventListener("click", (e) => {
-  if (currentMode === "copy") {
-    handleCopyMode(e);
-  } else if (currentMode === "explosion") {
-    handleExplosionMode(e);
-  }
-});
-```
-
-### Mode Toggle
-
-```javascript
-modeToggle.addEventListener("click", () => {
-  currentMode = currentMode === "copy" ? "explosion" : "copy";
-  setMode(currentMode);
-});
-```
-
----
-
-## 🎬 Initialization Sequence
-
-```javascript
-loadSavedMode(); // Load saved mode from localStorage
-setNewEmoji(); // Display initial emoji
-moveEmoji(); // Initial flee on page load
-```
-
-**On Page Load:**
-
-1. Load user's saved mode preference
-2. Display random emoji
-3. Emoji immediately flees from center
-4. Ready for interaction
+✅ Async JSON loading (non-blocking)
+✅ Event delegation for filters
+✅ Throttled mousemove (100ms)
+✅ CSS transitions (GPU accelerated)
+✅ Media queries for mobile
+✅ Efficient DOM updates
+✅ Minimal reflows/repaints
 
 ---
 
@@ -545,58 +638,6 @@ popSound.play().catch((err) => {
 
 ---
 
-## 💡 Customization Ideas
-
-### Adjust Chase Parameters
-
-```javascript
-// Change proximity distance (currently 150px)
-if (distance < 200) {
-  // More reactive
-  moveEmoji();
-}
-
-// Change cooldown (currently 1000ms)
-setTimeout(() => {
-  isEmojiFleeing = false;
-}, 500); // Faster cooldown
-```
-
-### Adjust Animation Speed
-
-```css
-/* Faster flee (currently 300ms) */
-transition-duration: 200ms, 200ms, 200ms, 200ms, 200ms;
-
-/* Slower flee (currently 300ms) */
-transition-duration: 200ms, 200ms, 200ms, 500ms, 500ms;
-```
-
-### Add More Emojis
-
-```javascript
-const emojis = [
-  // Existing emojis...
-  "🚀",
-  "🎉",
-  "🎊", // New emojis
-];
-```
-
-### Change Colors
-
-```css
-body {
-  background-color: #ff6b6b; /* New background */
-}
-
-.mode-toggle.explosion-mode {
-  background-color: #4a90e2; /* Different purple */
-}
-```
-
----
-
 ## 🚨 Troubleshooting
 
 ### Emoji Not Fleeing
@@ -635,48 +676,11 @@ body {
 
 ---
 
-## 🎓 Code Explanation
-
-### Random Emoji Generation
-
-```javascript
-Math.floor(Math.random() * emojis.length);
-```
-
-- `Math.random()` - Returns 0 to 0.999...
-- `* emojis.length` - Multiply by array length
-- `Math.floor()` - Round down to whole number
-
-### Sound Reset
-
-```javascript
-popSound.currentTime = 0;
-```
-
-- Resets sound to beginning
-- Allows rapid succession of pops
-- Enables clicking multiple times quickly
-
-### Error Handling
-
-```javascript
-popSound.play().catch((err) => {
-  console.log("Sound play prevented:", err);
-});
-```
-
-- `.catch()` - Handles promise rejection
-- Prevents app crash on sound policy block
-- Logs error for debugging
-
----
-
 ## 🤝 Potential Enhancements
 
 ### Feature Ideas
 
 - **More Emojis** - Expand collection to 100+
-- **Category Selection** - Filter by emotion type
 - **Animated Background** - Dynamic background colors
 - **Leaderboard** - Track clicks/interactions
 - **Emoji Info** - Show emoji name on display
@@ -686,7 +690,6 @@ popSound.play().catch((err) => {
 
 ### Technical Improvements
 
-- **Accessibility** - ARIA labels and screen reader support
 - **Touch Events** - Better mobile touch handling
 - **Keyboard Support** - Arrow keys for next emoji
 - **LocalStorage** - Save favorite emojis
@@ -722,49 +725,41 @@ popSound.play().catch((err) => {
 
 ## 🤝 Version Evolution
 
-| Feature                   | v1.0 | v2.0 | v3.0 |
-| ------------------------- | ---- | ---- | ---- |
-| **Random Emojis**         | ✅   | ✅   | ✅   |
-| **Hover Interaction**     | ✅   | ✅   | ✅   |
-| **Sound Effects**         | ✅   | ✅   | ✅   |
-| **Wobble Animation**      | ✅   | ✅   | ✅   |
-| **Copy Mode**             | ❌   | ✅   | ✅   |
-| **Explosion Mode**        | ❌   | ✅   | ✅   |
-| **Mode Toggle**           | ❌   | ✅   | ✅   |
-| **Clipboard Integration** | ❌   | ✅   | ✅   |
-| **Particle Effects**      | ❌   | ✅   | ✅   |
-| **Notifications**         | ❌   | ✅   | ✅   |
-| **LocalStorage**          | ❌   | ✅   | ✅   |
-| **🏃 Chase System**       | ❌   | ❌   | ✅   |
-| **Proximity Detection**   | ❌   | ❌   | ✅   |
-| **Throttled Movement**    | ❌   | ❌   | ✅   |
-| **Position Animation**    | ❌   | ❌   | ✅   |
+| Feature                 | v1.0 | v2.0 | v3.0 | v4.0 |
+| ----------------------- | ---- | ---- | ---- | ---- |
+| **Random Emojis**       | ✅   | ✅   | ✅   | ✅   |
+| **Hover Interaction**   | ✅   | ✅   | ✅   | ✅   |
+| **Sound Effects**       | ✅   | ✅   | ✅   | ✅   |
+| **Copy Mode**           | ❌   | ✅   | ✅   | ✅   |
+| **Explosion Mode**      | ❌   | ✅   | ✅   | ✅   |
+| **Chase System**        | ❌   | ❌   | ✅   | ✅   |
+| **Mode Toggle**         | ❌   | ✅   | ✅   | ✅   |
+| **🌙 Dark/Light Theme** | ❌   | ❌   | ❌   | ✅   |
+| **🔖 Category Filters** | ❌   | ❌   | ❌   | ✅   |
+| **📁 JSON Emojis**      | ❌   | ❌   | ❌   | ✅   |
+| **♿ Accessibility**    | ❌   | ❌   | ❌   | ✅   |
+| **📱 Mobile Optimized** | ❌   | ❌   | ❌   | ✅   |
 
 ---
 
 ## 📚 Technical Stack
 
-- **Markup**: HTML5 (semantic structure)
-- **Styling**: CSS3 (animations, transitions, positioning)
-- **Logic**: Vanilla JavaScript (no frameworks)
-- **Positioning**: Absolute + Transform (smooth animations)
-- **Events**: Mousemove, Mouseover, Click
-- **Audio**: Web Audio API (MP3 format)
-- **Storage**: LocalStorage API (mode persistence)
-- **Haptics**: Vibration API (mobile feedback)
-- **Math**: Pythagorean theorem (distance calculation)
-- **Performance**: Throttling (100ms intervals)
+- **Markup**: HTML5 (semantic, accessible)
+- **Styling**: CSS3 (variables, media queries, transitions)
+- **Logic**: Vanilla JavaScript (async/await, Fetch API)
+- **Data**: JSON (centralized emoji management)
+- **APIs Used**: Clipboard, Vibration, LocalStorage, Fetch
+- **No Frameworks**: Pure vanilla web technologies
 
 ---
 
 ## 🎯 Next Steps
 
-1. **Download Files** - Get all 4 files
+1. **Download Files** - Get all 5 files (new: emojis.json!)
 2. **Keep Together** - All in same directory
 3. **Open HTML** - Launch in browser
-4. **Try Both Modes** - Hover and click
-5. **Toggle Modes** - Use the mode button
-6. **Enjoy!** - Have fun with emojis!
+4. **Try Features** - Explore dark mode, filters, chase
+5. **Enjoy!** - Have fun with themed emojis!
 
 ---
 
@@ -772,19 +767,19 @@ popSound.play().catch((err) => {
 
 ### For Best Experience
 
-- Use on desktop for smooth chase experience
-- Move mouse slowly to watch emoji strategically flee
-- Try rapid mouse movements to chase fast
-- Use fullscreen for larger interaction area
+- Try dark mode for nighttime use
+- Use category filters for mood-specific emojis
+- Click rapidly for fast emoji generation
+- Chase emojis with smooth mouse movements
 - Try both Copy and Explosion modes
 
 ### Fun Ideas
 
-- Compete with friends to catch emoji
-- Time how long you can chase it
-- Try to predict emoji escape path
-- Mix Copy and Explosion modes
-- Play with different movement speeds
+- Collect all emojis in a category
+- See how many you can catch before they flee
+- Use dark mode for relaxed viewing
+- Share favorite emoji combinations
+- Customize emojis.json with your favorites
 
 ---
 

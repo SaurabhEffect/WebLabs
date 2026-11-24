@@ -30,9 +30,9 @@
 }
 
 .content h1 {
-    font-size: 160px;
+    font-size: clamp(4.5rem, 15vw, 10rem);
     color: white;
-    font-weight: 600px;
+    font-weight: 600;
     transition: 0.5s;
 }
 

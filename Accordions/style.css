@@ -55,7 +55,7 @@ body {
 #accordion li input[type="radio"]:checked + label + .content {
   max-height: 400px;
 }
-/*#accordion input[type="radio"]:checked + .content + label span,*/
+
 #accordion li input[type="radio"]:checked + label span {
   transform: rotate(270deg);
 }
